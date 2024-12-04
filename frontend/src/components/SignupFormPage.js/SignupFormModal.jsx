@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { useModal } from "../../context/Modal";
 
-export default function SignupFormPage() {
+export default function SignupFormModal() {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const [username, setUserName] = useState('')
@@ -13,6 +14,7 @@ export default function SignupFormPage() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [errors, setErrors] = useState({})
+    const {closeModal} = useModal()
 
     if (sessionUser) return <Navigate to="/" replace={true} />
 
@@ -28,7 +30,9 @@ export default function SignupFormPage() {
                     lastName,
                     password
                 })
-            ).catch(async (res) => {
+            )
+            .then(closeModal)
+            .catch(async (res) => {
                 const data = await res.json();
                 if (data?.errors) {
                     setErrors(data.errors);
