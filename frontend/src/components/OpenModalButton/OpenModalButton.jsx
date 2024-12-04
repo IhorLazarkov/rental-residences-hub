@@ -1,6 +1,6 @@
 import { useModal } from "../../context/Modal";
 
-export function OpenModalButton({
+export default function OpenModalButton({
     modalComponent, // component to render inside the modal
     buttonText, // text of the button that opens the modal
     onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
