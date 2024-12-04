@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../../store/session";
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import "./LoginForm.css"
 import { Navigate } from "react-router-dom";
@@ -16,21 +16,22 @@ export default function LoginFormPage() {
     const onSubmit = (e) => {
         e.preventDefault()
         setErrors({})
-        dispatch(login({
-            credential,
-            password
-        })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data?.errors) setErrors(data.errors);
-            }
-        );
+        dispatch(
+            sessionActions.login({
+                credential,
+                password
+            })).catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data?.errors) setErrors(data.errors);
+                }
+            );
     };
 
     return (
         <>
             <h1>Log In</h1>
-            <form >
+            <form method="POST">
                 <div>
                     <label htmlFor="username">Username or Email</label>
 

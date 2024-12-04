@@ -17,15 +17,9 @@ export const login = (user) => async function (dispatch) {
             password
         })
     })
-    if (res.ok) {
-        const user = await res.json()
-        dispatch(setUser(user));
-        return res.body
-    }
-    else {
-        console.error("error occurred on login", await res.json().message);
-        dispatch(removeUser());
-    }
+    const data = await res.json()
+    dispatch(setUser(data));
+    return res;
 }
 export const restoreUser = () => async (dispatch) => {
     const response = await csrfFetch("/api/session");
@@ -39,6 +33,24 @@ function setUser(user) {
         type: CREATE_SESSION,
         user
     }
+}
+
+export const signup = (user) => async (dispatch) => {
+    const { username, firstName, lastName, email, password } = user
+    const res = await csrfFetch('/api/users', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username,
+            firstName,
+            lastName,
+            email,
+            password
+        })
+    })
+    const data = await res.json()
+    dispatch(setUser(data))
+    return res;
 }
 
 function removeUser() {
