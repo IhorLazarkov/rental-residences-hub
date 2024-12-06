@@ -1,0 +1,12 @@
+main{
+    margin-top: 50px;
+}
+
+ul#spots-container {
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
