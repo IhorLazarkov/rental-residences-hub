@@ -41,3 +41,15 @@ nav button {
   border: 1px solid grey;
   font-weight: 600;
 }
+
+button.profile {
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    min-width: 80px;
+    min-height: 48px;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+}

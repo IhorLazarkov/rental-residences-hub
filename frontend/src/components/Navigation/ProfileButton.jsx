@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
+import { IoIosMenu } from 'react-icons/io'
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
@@ -43,7 +44,12 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {user && <button onClick={toggleMenu}>
+      {user && <button
+        class="profile"
+        onClick={toggleMenu}
+        style={{ color: "inherit", fontSize: "20px" }}
+      >
+        <IoIosMenu />
         <FaUserCircle />
       </button>
       }
@@ -60,16 +66,16 @@ function ProfileButton({ user }) {
         </>
       ) : (
         <div id="nav-signin-button-container">
-            <OpenModalButton
-              buttonText="Log In"
-              onButtonClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalButton
-              buttonText="Sign Up"
-              onButtonClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+          <OpenModalButton
+            buttonText="Log In"
+            onButtonClick={closeMenu}
+            modalComponent={<LoginFormModal />}
+          />
+          <OpenModalButton
+            buttonText="Sign Up"
+            onButtonClick={closeMenu}
+            modalComponent={<SignupFormModal />}
+          />
         </div>
       )}
     </>
