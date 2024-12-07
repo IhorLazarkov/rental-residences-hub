@@ -63,6 +63,138 @@ module.exports = {
       lat: 10.01,
       lng: 23.1
     },
+    {
+      address: "5500 Park St",
+      city: "Ashland City",
+      state: "TN",
+      country: "US",
+      name: "House",
+      price: 2500.00,
+      description: "Comfortable 1br house for family",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "5500 Main St",
+      city: "Ashland",
+      state: "NC",
+      country: "US",
+      name: "Appartment",
+      price: 250.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "5500 Park St",
+      city: "Ashland City",
+      state: "TN",
+      country: "US",
+      name: "House",
+      price: 2500.00,
+      description: "Comfortable 1br house for family",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "5500 Main St",
+      city: "Ashland",
+      state: "NC",
+      country: "US",
+      name: "Appartment",
+      price: 250.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "5500 Park St",
+      city: "Ashland City",
+      state: "TN",
+      country: "US",
+      name: "House",
+      price: 2500.00,
+      description: "Comfortable 1br house for family",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "5500 Main St",
+      city: "Ashland",
+      state: "NC",
+      country: "US",
+      name: "Appartment",
+      price: 250.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
+    {
+      address: "233 1st Ave",
+      city: "New York",
+      state: "NY",
+      country: "US",
+      name: "Appartment",
+      price: 5500.00,
+      description: "Comfortable 1br appertments in downtown",
+      lat: 10.01,
+      lng: 23.1
+    },
     ];
     const user = await User.findOne({
       where: { username: "FakeUser1" }

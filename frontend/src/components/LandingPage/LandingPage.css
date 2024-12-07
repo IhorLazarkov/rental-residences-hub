@@ -1,0 +1,11 @@
+main > ul {
+  margin: 40px 40px;
+  padding: 0 0;
+}
+ul#spots-container {
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}

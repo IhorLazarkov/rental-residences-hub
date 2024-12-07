@@ -587,7 +587,6 @@ router.get('/', queryParametersValidation, async (req, res, next) => {
             limit: size,
             offset: size * (page - 1),
         });
-        // console.log('spots :>> ', spots[0].Reviews);
         if (spots.length === 0) {
             return res.status(200).json({ Spots: [], page, size }); // Return empty array
         }
@@ -626,7 +625,7 @@ router.get('/', queryParametersValidation, async (req, res, next) => {
             };
         });
 
-        return res.status(200).json({ Spots: formattedSpots, page: page, size: size });
+        return res.status(200).json({ Spots: formattedSpots, page, size });
     } catch (err) {
         const error = new Error("Failed to get data")
         error.status = 500

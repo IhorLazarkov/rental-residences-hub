@@ -1,0 +1,35 @@
+.spot-card {
+  cursor: pointer;
+  border: 0px solid rgba(128, 128, 128, 0.3);
+  height: 350px;
+  min-width: 300px;
+  max-width: 400px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spot-card > img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.spot-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15%;
+}
+
+.spot-card-info > .subcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spot-card .price {
+  font-weight: 500;
+}
