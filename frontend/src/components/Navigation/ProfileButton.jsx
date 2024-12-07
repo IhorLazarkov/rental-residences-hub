@@ -43,38 +43,35 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      {user && <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
+      }
+      {user ? (
+        <>
+          <ul className={ulClassName} ref={ulRef}>
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <OpenModalButton
-                buttonText="Log In"
-                onButtonClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-            <li>
-              <OpenModalButton
-                buttonText="Sign Up"
-                onButtonClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </li>
-          </>
-        )}
-      </ul>
+          </ul>
+        </>
+      ) : (
+        <div id="nav-signin-button-container">
+            <OpenModalButton
+              buttonText="Log In"
+              onButtonClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalButton
+              buttonText="Sign Up"
+              onButtonClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+        </div>
+      )}
     </>
   );
 }

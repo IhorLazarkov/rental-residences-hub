@@ -1,18 +1,43 @@
-#logo{
-    color: rgb(255,56,92);
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: 500;
-    font-family: 'Segoe UI', Roboto,'Helvetica Neue', sans-serif;
-    margin-left: 20px;
+nav {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
 }
-
 nav > ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
 }
 
-nav li {
-    cursor: pointer;
+#logo {
+  color: rgb(255, 56, 92);
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: 500;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+nav .profile-dropdown {
+  position: absolute;
+  left: -140px;
+  z-index: 1;
+  background-color: white;
+}
+
+nav .hidden {
+  display: none;
+}
+nav #nav-signin-button-container {
+  display: flex;
+  gap: 10px;
+}
+nav button {
+  cursor: pointer;
+  box-sizing: border-box;
+  min-width: 120px;
+  min-height: 35px;
+  border-radius: 3px;
+  background-color: inherit;
+  border: 1px solid grey;
+  font-weight: 600;
 }

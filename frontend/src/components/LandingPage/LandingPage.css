@@ -1,7 +1,7 @@
-main{
-    margin-top: 50px;
+main > ul {
+  margin: 40px 40px;
+  padding: 0 0;
 }
-
 ul#spots-container {
   list-style: none;
 

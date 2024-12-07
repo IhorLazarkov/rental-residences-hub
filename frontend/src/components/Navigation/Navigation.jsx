@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
           <NavLink id="logo" to="/">airbnb</NavLink>
         </li>
         {isLoaded && (
-          <li>
+          <li style={{position: "relative"}}>
             <ProfileButton user={sessionUser} />
           </li>
         )}
