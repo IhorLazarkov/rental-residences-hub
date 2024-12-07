@@ -28,9 +28,10 @@ nav .profile-dropdown {
   margin: 10px;
   border-radius: 10px;
   min-height: 140px;
+  min-width: 200px;
   
   position: absolute;
-  left: -40px;
+  left: -100px;
   z-index: 1;
   
   display: flex;
