@@ -19,10 +19,27 @@ nav > ul {
 }
 
 nav .profile-dropdown {
-  position: absolute;
-  left: -140px;
-  z-index: 1;
+  box-sizing: border-box;
+  border: 1px solid rgba(128, 128, 128, 0.3);
   background-color: white;
+  
+  list-style: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  min-height: 140px;
+  
+  position: absolute;
+  left: -40px;
+  z-index: 1;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+nav .profile-dropdown button {
+    margin-top: 35%;
 }
 
 nav .hidden {
@@ -39,18 +56,18 @@ nav button {
   min-height: 35px;
   border-radius: 3px;
   background-color: inherit;
-  border: 1px solid grey;
+  border: 1px solid rgba(128, 128, 128, 0.3);
   font-weight: 600;
 }
 
 button.profile {
-    border: 1px solid rgba(128, 128, 128, 0.3);
-    min-width: 80px;
-    min-height: 48px;
-    border-radius: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  min-width: 80px;
+  min-height: 48px;
+  border-radius: 20px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
 }

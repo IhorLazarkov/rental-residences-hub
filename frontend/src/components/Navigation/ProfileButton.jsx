@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
       {user && <button
         class="profile"
         onClick={toggleMenu}
-        style={{ color: "inherit", fontSize: "20px" }}
+        style={{ color: "inherit", fontSize: "25px" }}
       >
         <IoIosMenu />
         <FaUserCircle />
