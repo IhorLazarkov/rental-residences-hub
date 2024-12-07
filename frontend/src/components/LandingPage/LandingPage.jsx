@@ -27,7 +27,8 @@ export default function LandingPage() {
                             key={spot.id}
                             url={spot?.url}
                             description={spot?.description}
-                            rates={spot?.rates}
+                            rating={spot?.avgRating}
+                            previewImage={spot?.previewImage}
                         >
                             {spot.address}
                             {spot.country}
