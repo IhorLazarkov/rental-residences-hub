@@ -25,16 +25,13 @@ export default function LandingPage() {
                     {Spots.map(spot => {
                         return <SpotCard
                             key={spot.id}
-                            url={spot?.url}
-                            description={spot?.description}
-                            rating={spot?.avgRating}
+                            name={spot?.name}
                             previewImage={spot?.previewImage}
-                        >
-                            {spot.address}
-                            {spot.country}
-                            {spot.city}
-                            {spot.state}
-                        </SpotCard>
+                            city={spot?.city}
+                            state={spot?.state}
+                            price={spot?.price}
+                            avgRating={spot?.avgRating}
+                        />
                     })}
                 </ul>
             }

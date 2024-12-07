@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
     <nav>
       <ul>
         <li>
-          <NavLink id="logo" to="/">airbnb</NavLink>
+          <NavLink id="logo" to="/">rental residence hub</NavLink>
         </li>
         {isLoaded && (
           <li style={{position: "relative"}}>
