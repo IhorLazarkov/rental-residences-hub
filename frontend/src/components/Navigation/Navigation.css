@@ -6,6 +6,7 @@ nav > ul {
   padding: 0 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style: none;
 }
 
