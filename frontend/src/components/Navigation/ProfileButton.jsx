@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
   return (
     <>
       {user && <button
-        class="profile"
+        className="profile"
         onClick={toggleMenu}
         style={{ color: "inherit", fontSize: "25px" }}
       >

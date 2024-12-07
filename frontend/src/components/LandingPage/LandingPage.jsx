@@ -7,7 +7,7 @@ import SpotCard from "../SpotCard/SpotCard";
 
 export default function LandingPage() {
     const [isLoading, setIsLoading] = useState(true)
-    const { Spots, page, size } = useSelector(state => state.spots)
+    const { Spots } = useSelector(state => state.spots)
     const dispatch = useDispatch()
 
     useEffect(() => {
