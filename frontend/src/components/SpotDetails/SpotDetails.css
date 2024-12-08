@@ -70,3 +70,30 @@
   height: 40px;
   font-size: medium;
 }
+
+/* Footer */
+.spot-details-foot {
+  border-top: 2px solid black;
+  padding-top: 20px;
+}
+.reviews-summary {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+/* review tile */
+.review-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.review-tile > .reviewer {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.review-tile > .udpatedAt {
+  color: lightgrey;
+}

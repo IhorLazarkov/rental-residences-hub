@@ -1,8 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const LOAD_SPOTS = 'spots/load';
-const LOAD_SPOT = 'spot/load';
-const LOAD_REVIEWS = 'reviews/load'
+const LOAD_SPOT_DETAILS = 'spotDetails/load';
 
 export const getSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
@@ -11,18 +10,17 @@ export const getSpots = () => async (dispatch) => {
     return res;
 }
 
-export const getSpot = (spotId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spotId}`)
-    const data = await res.json()
-    dispatch(loadSpot(data))
-    return res;
-}
+export const getSpotDetails = (spotId) => async (dispatch) => {
+    const resSpot = await csrfFetch(`/api/spots/${spotId}`)
+    const dataSpotDetails = await resSpot.json()
+    const resReview = await csrfFetch(`/api/spots/${spotId}/reviews`)
+    const dataReview = await resReview.json()
 
-export const getReviews = (spotId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
-    const data = await res.json()
-    dispatch(loadReviews(data))
-    return res;
+    dispatch(loadSpotDetails({
+        spotDetails: dataSpotDetails,
+        spotReviews: dataReview
+    }))
+    return { resSpot, resReview };
 }
 
 function loadSpots(spots) {
@@ -31,16 +29,10 @@ function loadSpots(spots) {
         spots
     }
 }
-function loadSpot(spot) {
+function loadSpotDetails(spot) {
     return {
-        type: LOAD_SPOT,
+        type: LOAD_SPOT_DETAILS,
         spot
-    }
-}
-function loadReviews(reviews) {
-    return {
-        type: LOAD_REVIEWS,
-        reviews
     }
 }
 
@@ -49,10 +41,8 @@ export default function spotsReducer(status = {}, action) {
 
         case LOAD_SPOTS:
             return { ...status, ...action.spots };
-        case LOAD_SPOT:
+        case LOAD_SPOT_DETAILS:
             return { ...status, ...action.spot };
-        case LOAD_REVIEWS:
-            return { ...status, ...action.reviews };
 
         default:
             return status;
