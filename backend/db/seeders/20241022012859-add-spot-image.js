@@ -18,7 +18,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const urls = [
+    const previewUrls = [
       "https://www.apartments.com/blog/sites/default/files/styles/x_large/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg.webp?itok=lYDRCGzC",
       "https://images1.apartments.com/i2/o40ZE1DtHwHeKi88KPX0aCuumyFDoVBtYXrx-WWKJh4/116/icon-apartment-homes-at-hardin-valley-knoxville-tn-building-photo.jpg?p=1",
       "https://a0.muscache.com/im/pictures/73af5749-a5fa-423c-be54-78496a77c06a.jpg?im_w=960&im_format=avif",
@@ -36,13 +36,29 @@ module.exports = {
       "https://a0.muscache.com/im/pictures/prohost-api/Hosting-49315894/original/4f523913-3270-44a0-9de8-698ba8c5cc1b.jpeg?im_w=720&im_format=avif",
       "https://a0.muscache.com/im/pictures/miso/Hosting-677422480583514492/original/f97adcf5-2742-4c96-98a9-4987ca4ec20c.jpeg?im_w=720&im_format=avif",
     ]
-    const spot = await Spot.findAll();
-    spot.forEach(async (spot, i) => {
+    const imgsUrls = [
+      'https://images1.apartments.com/i2/KwFNdvxUUwvgF-1_5wNErZg4q4skPRJB-w4UC9GY6JQ/116/reserve-at-drakes-creek-hendersonville-tn-kitchen-with-hardwood-style-flooring-mod.jpg?p=1',
+      "https://images1.apartments.com/i2/-NHSXcFaXKQR5ZAxrVkP2-jI9SC0GmKuUlo3ZVjB7sA/116/reserve-at-drakes-creek-hendersonville-tn-2br-15ba---950sf---living-room.jpg?p=1",
+      'https://images1.apartments.com/i2/fx7C4CQwVWb4pamAYLU7UPOvz7-pv5YHZeuS6V5A_LA/116/reserve-at-drakes-creek-hendersonville-tn-spacious-living-room-with-hardwood-style.jpg?p=1',
+      'https://images1.apartments.com/i2/qsAg5JCpseJQoBqLoVrKfu4f0R3xFZ51QGCaIz92KZw/116/reserve-at-drakes-creek-hendersonville-tn-2br-15ba---950sf---living-room.jpg?p=1',
+    ]
+    const spots = await Spot.findAll();
+    spots.forEach(async (spot, i) => {
+
+      //add preview image
       const image = await SpotImage.create({
-        url: urls[i],
+        url: previewUrls[i],
         preview: true
       });
       await spot.addSpotImage(image);
+
+      //add not preview images
+      imgsUrls.forEach(async url => {
+        const img = await SpotImage.create({
+          url, preview: false
+        });
+        await spot.addSpotImage(img);
+      })
     })
   },
 
