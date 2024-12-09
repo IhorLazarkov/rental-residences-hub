@@ -1,0 +1,42 @@
+#new-spot-form-container {
+  margin: 0 auto;
+
+  max-width: 430px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  margin: 15px 0;
+}
+
+form input, textarea {
+  box-sizing: border-box;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  font-size: 1em;
+  color: rgb(158, 156, 156);
+  padding-left: 3px;
+}
+
+#new-spot-form-container > input,
+#new-spot-form-container > label {
+  width: 100%;
+}
+
+form .sub-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+form textarea {
+    width: 100%;
+    height: 200px;
+}
+

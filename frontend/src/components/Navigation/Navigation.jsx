@@ -10,16 +10,12 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink id="logo" to="/">rental residence hub</NavLink>
-        </li>
-        {isLoaded && (
-          <li style={{position: "relative"}}>
-            <ProfileButton user={sessionUser} />
-          </li>
-        )}
-      </ul>
+      <NavLink id="logo" to="/">rental residence hub</NavLink>
+      {isLoaded && (
+        <div style={{ position: "relative" }}>
+          <ProfileButton user={sessionUser} />
+        </div>
+      )}
     </nav>
   );
 }

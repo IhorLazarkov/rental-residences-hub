@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
-import { IoIosMenu } from 'react-icons/io'
+import { IoIosMenu } from 'react-icons/io';
+import { NavLink } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
@@ -44,28 +45,33 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {user && <button
-        className="profile"
-        onClick={toggleMenu}
-        style={{ color: "inherit", fontSize: "25px" }}
-      >
-        <IoIosMenu />
-        <FaUserCircle />
-      </button>
+      {user && <div className='nav-button-container'>
+        <NavLink to="/spots/new">Create a New Spot</NavLink>
+        <button
+          className="profile"
+          onClick={toggleMenu}
+          style={{ color: "inherit", fontSize: "25px" }}
+        >
+          <IoIosMenu />
+          <FaUserCircle />
+        </button>
+      </div>
       }
       {user ? (
         <>
           <ul className={ulClassName} ref={ulRef}>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
+            <li>Hello, {user.firstName}</li>
             <li>{user.email}</li>
+            <li><hr /></li>
+            <li>Manage Spots</li>
+            <li><hr /></li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
           </ul>
         </>
       ) : (
-        <div id="nav-signin-button-container">
+        <div className="nav-button-container">
           <OpenModalButton
             buttonText="Log In"
             onButtonClick={closeMenu}
