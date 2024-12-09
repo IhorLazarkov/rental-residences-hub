@@ -28,17 +28,19 @@ export default function SpotDetails() {
                 <div className="address">{city}, {state}, {country}</div>
             </div>
             <div className='spot-details-body'>
-                {previewImage && <div className='photos-container'>
+                <div className='photos-container'>
                     <img className="preview"
-                        src={previewImage.url}
+                        src={previewImage && previewImage.url}
                         alt="preview image" />
-                    {images.map(image => {
-                        <div className='images'>
-                            return <img key={image.id} src={image.url} alt="image of an property" />
-                        </div>
-                    })}
+                    <div className='images'>
+                        {images.filter(i => !i.preview).map(({ id, url }) => {
+                            return <img
+                                key={id}
+                                src={url}
+                                alt="image of a property" />
+                        })}
+                    </div>
                 </div>
-                }
                 <div className='property-description-container'>
                     <div>
                         <h3>Hosted by {firstName} {lastName}</h3>
@@ -52,7 +54,9 @@ export default function SpotDetails() {
                                 <span>{numReviews} reviews</span>
                             </span>
                         </div>
-                        <button>Reserve</button>
+                        <button
+                        onClick={(e) => alert("Feature Commitg soon ...")}
+                        >Reserve</button>
                     </div>
                 </div>
             </div>

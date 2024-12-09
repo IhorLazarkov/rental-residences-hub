@@ -14,11 +14,11 @@
 /* Body */
 .spot-details-body > .photos-container {
   display: flex;
+  justify-content: space-around;
 }
 
 .spot-details-body > .photos-container > .preview {
-  flex-grow: 3;
-  max-width: 50%;
+  width: 50%;
 }
 .spot-details-body > .photos-container > .preview > img {
   object-fit: cover;
@@ -27,10 +27,13 @@
 .spot-details-body > .photos-container > .images {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  gap: 5px;
+  /* flex-grow: 1; */
+  max-width: 48%;
 }
 .spot-details-body > .photos-container > .images > img {
-  max-width: 100px;
+  max-width: 300px;
+  max-height: 300px;
   object-fit: cover;
 }
 
