@@ -1,6 +1,11 @@
 import './NewSpot.css'
 
 export default function NewSpot() {
+
+    const onSubmit = () => {
+
+    }
+
     return (
         <>
             <form id="new-spot-form-container">
@@ -60,6 +65,22 @@ export default function NewSpot() {
                     $ <input style={{ width: "100%" }} type="text" placeholder='Price per night (USD)' />
                 </span>
                 <hr />
+                <h3>Liven up your spot with photos</h3>
+                <p>
+                    Submit a link to at least one photo to publish your spot.
+                </p>
+                <input type="text" placeholder='Preview image URL' />
+                <input type="text" placeholder='Image URL' />
+                <input type="text" placeholder='Image URL' />
+                <input type="text" placeholder='Image URL' />
+                <input type="text" placeholder='Image URL' />
+                <input type="text" placeholder='Image URL' />
+                <span>
+                    <button
+                        className='primary'
+                        type="submit"
+                        onSubmit={onSubmit}>Create Spot</button>
+                </span>
             </form>
         </>
     );

@@ -29,7 +29,7 @@ nav .profile-dropdown {
   min-width: 200px;
 
   position: absolute;
-  left: -100px;
+  left: 50px;
   z-index: 1;
 
   display: flex;

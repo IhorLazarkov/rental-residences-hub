@@ -55,7 +55,8 @@ export default function SpotDetails() {
                             </span>
                         </div>
                         <button
-                        onClick={() => alert("Feature Commitg soon ...")}
+                            className='primary'
+                            onClick={() => alert("Feature Commitg soon ...")}
                         >Reserve</button>
                     </div>
                 </div>
