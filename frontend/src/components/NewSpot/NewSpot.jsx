@@ -84,6 +84,9 @@ export default function NewSpot() {
                 setPrice(0)
                 setPreviewImg('')
                 setImage1('')
+                setImage2('')
+                setImage3('')
+                setImage4('')
 
                 setSubmitted(false);
             })
