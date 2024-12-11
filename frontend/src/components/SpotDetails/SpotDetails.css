@@ -66,9 +66,29 @@
   justify-content: space-between;
   align-items: baseline;
 }
+button {
+  cursor: pointer;
+}
 button.primary {
   background: rgb(69, 69, 246);
   color: white;
+  border-radius: 5px;
+  border: 1px solid lightgrey ;
+  height: 40px;
+  font-size: medium;
+}
+button.secondary {
+  color: rgb(69, 69, 246);
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(69, 69, 246);
+  height: 40px;
+  font-size: medium;
+}
+button.critical {
+  color: rgb(246, 69, 69);
+  background-color: white;
+  border: 1px solid rgb(246, 69, 69);
   border-radius: 5px;
   height: 40px;
   font-size: medium;

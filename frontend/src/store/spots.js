@@ -36,13 +36,12 @@ export const createSpot = (spot) => async (dispatch) => {
     return { resSpot, resPreviewImg };
 };
 
-const newSpot = (spot) => {
-    return {
-        type: NEW_SPOT,
-        spot
-    }
-};
-
+export const deleteSpot = (id) => async (dispatch) => {
+    const resDelete = await csrfFetch(`/api/spots/${id}`, { method: "DELETE"})
+    const dataDelete = await resDelete.json()
+    await dispatch(loadCurrentSpots())
+    return dataDelete;
+}
 export const getSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
     const data = await res.json();
@@ -62,6 +61,20 @@ export const getSpotDetails = (spotId) => async (dispatch) => {
     }))
     return { resSpot, resReview };
 }
+
+export const loadCurrentSpots = () => async (dispatch) => {
+    const res = await csrfFetch('/api/spots/current')
+    const data = await res.json()
+    dispatch(loadSpots(data))
+    return res;
+}
+
+const newSpot = (spot) => {
+    return {
+        type: NEW_SPOT,
+        spot
+    }
+};
 
 function loadSpots(spots) {
     return {
