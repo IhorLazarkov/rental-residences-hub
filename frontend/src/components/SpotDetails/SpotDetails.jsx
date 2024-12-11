@@ -9,16 +9,23 @@ import ReviewTile from './ReviewTile';
 export default function SpotDetails() {
     const { spotId } = useParams()
     const dispatch = useDispatch()
-    const { spotDetails, spotReviews } = useSelector(state => state.spots)
-    const { name, city, state, country, description, price, avgStarRating, numReviews } = spotDetails || {}
-    const { firstName, lastName } = spotDetails?.Owner || {}
-    const images = spotDetails?.SpotImages || []
+    const { spotReviews } = useSelector(state => state.spots)
+    const { name, city, state, country, description, price, avgStarRating, numReviews } = spotReviews || {}
+    const { firstName, lastName } = spotReviews?.Owner || {}
+    const images = spotReviews?.SpotImages || []
     const reviews = spotReviews?.Reviews || []
     const previewImage = images.find(i => i.preview)
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
     }, [dispatch, spotId])
+
+    const starArea = avgStarRating === "0.0"
+        ? <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />New</span>
+        : <>
+            <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />{avgStarRating} &#183; </span>
+            <span>{numReviews} reviews</span>
+        </>
 
     return (
 
@@ -50,8 +57,7 @@ export default function SpotDetails() {
                         <div className='summary'>
                             <span><span className='price'>${price}</span> night</span>
                             <span>
-                                <span className='rating'><IoIosStar style={{ fontSize: "18px" }} /> {avgStarRating} &#183; </span>
-                                <span>{numReviews} reviews</span>
+                                {starArea}
                             </span>
                         </div>
                         <button
@@ -63,8 +69,7 @@ export default function SpotDetails() {
             </div>
             <div className='spot-details-foot'>
                 <div className='reviews-summary'>
-                    <span className='rating'><IoIosStar style={{ fontSize: "18px" }} /> {avgStarRating} &#183; </span>
-                    <span>{numReviews} reviews</span>
+                    {starArea}
                 </div>
                 <div className='reviews-container'>
                     {reviews.map(({ id, User, review, updatedAt, stars }) => {

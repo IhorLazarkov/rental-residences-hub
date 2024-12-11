@@ -9,7 +9,9 @@ export default function SpotCard({ id, previewImage, city, state, price, avgRati
             <div className="spot-card-info">
                 <div className="subcontainer">
                     <span className="address">{city}, {state}</span>
-                    <span className="rating"><IoIosStar style={{ fontSize: "13px" }} /> {avgRating}.0</span>
+                    <span className="rating"><IoIosStar style={{ fontSize: "13px" }} />
+                        {avgRating === 0 ? "New" : avgRating + ".0"}
+                    </span>
                 </div>
                 <div><span className="price">${price}</span> night</div>
             </div>

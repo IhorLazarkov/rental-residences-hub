@@ -71,8 +71,8 @@ export default function NewSpot() {
         if (Object.entries(errors).length > 0) return;
 
         dispatch(createSpot(newSpot))
-            .then((data) => {
-                console.log('data :>> ', data);
+            .then(() => {
+
                 setStreet('')
                 setCity('')
                 setCountry('')

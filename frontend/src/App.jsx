@@ -5,7 +5,7 @@ import * as sessionActions from './store/session';
 import Navigation from "./components/Navigation/Navigation";
 import LandingPage from "./components/LandingPage";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
-import NewSpot from "./components/NewSpot/NewSpot";
+import NewSpot from "./components/NewSpot/NewSpotForm";
 
 
 function Layout() {
