@@ -12,7 +12,6 @@ export default function LandingPage() {
 
     useEffect(() => {
         dispatch(getSpots()).then(() => {
-            console.log('Spots :>> ', Spots);
             setIsLoading(false)
         })
     }, [dispatch]);
@@ -25,6 +24,7 @@ export default function LandingPage() {
                     {Spots.map(spot => {
                         return <SpotCard
                             key={spot.id}
+                            id={spot.id}
                             name={spot?.name}
                             previewImage={spot?.previewImage}
                             city={spot?.city}

@@ -49,7 +49,7 @@ export default function LoginFormModal() {
                         id="password"
                         onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                {errors.credential && <p>{errors.credential}</p>}
+                {errors.credential && <p id="error-container">{errors.credential}</p>}
                 <button
                     type="submit"
                     onClick={onSubmit}

@@ -1,0 +1,61 @@
+#new-spot-form-container {
+  margin: 0 auto 100px;
+
+  max-width: 430px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#new-spot-form-container input {
+  margin: 15px 0;
+}
+
+hr{
+    width: 100%;
+}
+
+form input, textarea {
+  box-sizing: border-box;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  font-size: 1em;
+  padding-left: 3px;
+}
+
+form input::placeholder, textarea::placeholder{
+    color: rgb(158, 156, 156);
+}
+
+#new-spot-form-container > input,
+#new-spot-form-container > label {
+  width: 100%;
+}
+
+#new-spot-form-container > span {
+    width: 100%;
+    text-align: center;
+}
+
+form .sub-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#new-spot-form-container textarea {
+    width: 100%;
+    height: 200px;
+}
+.error{
+  color: red;
+}
+
+#new-spot-form-container .error{
+  box-sizing: border-box;
+  text-align: start;
+}

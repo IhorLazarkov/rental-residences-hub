@@ -5,6 +5,8 @@
   min-width: 300px;
   max-width: 400px;
   font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  text-decoration: none;
+  color: inherit;
 
   display: flex;
   flex-direction: column;
@@ -31,5 +33,5 @@
 }
 
 .spot-card .price {
-  font-weight: 500;
+  font-weight: 600;
 }

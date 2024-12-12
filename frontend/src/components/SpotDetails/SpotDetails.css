@@ -1,0 +1,122 @@
+.spot-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 10px 40px;
+}
+
+/* Head */
+.spot-details-container > .spot-details-head > .name {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+/* Body */
+.spot-details-body > .photos-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.spot-details-body > .photos-container > .preview {
+  width: 50%;
+}
+.spot-details-body > .photos-container > .preview > img {
+  object-fit: cover;
+}
+
+.spot-details-body > .photos-container > .images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  /* flex-grow: 1; */
+  max-width: 48%;
+}
+.spot-details-body > .photos-container > .images > img {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.property-description-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.property-description-container h3 {
+  margin-top: 0;
+}
+
+.property-description-container > .actions {
+  border: 2px solid black;
+  box-sizing: border-box;
+  padding: 20px 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30%;
+}
+.property-description-container .price {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.property-description-container .summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+button {
+  cursor: pointer;
+}
+button.primary {
+  background: rgb(69, 69, 246);
+  color: white;
+  border-radius: 5px;
+  border: 1px solid lightgrey ;
+  height: 40px;
+  font-size: medium;
+}
+button.secondary {
+  color: rgb(69, 69, 246);
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(69, 69, 246);
+  height: 40px;
+  font-size: medium;
+}
+button.critical {
+  color: rgb(246, 69, 69);
+  background-color: white;
+  border: 1px solid rgb(246, 69, 69);
+  border-radius: 5px;
+  height: 40px;
+  font-size: medium;
+}
+
+/* Footer */
+.spot-details-foot {
+  border-top: 2px solid black;
+  padding-top: 20px;
+}
+.reviews-summary {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+/* review tile */
+.review-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.review-tile > .reviewer {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.review-tile > .udpatedAt {
+  color: lightgrey;
+}

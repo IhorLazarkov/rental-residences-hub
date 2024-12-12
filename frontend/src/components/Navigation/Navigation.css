@@ -1,8 +1,7 @@
 nav {
-  padding-bottom: 20px;
+  height: 80px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-}
-nav > ul {
+
   padding: 0 40px;
   display: flex;
   justify-content: space-between;
@@ -15,7 +14,6 @@ nav > ul {
   text-decoration: none;
   font-size: 1.5em;
   font-weight: 500;
-  font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
 nav .profile-dropdown {
@@ -31,7 +29,7 @@ nav .profile-dropdown {
   min-width: 200px;
 
   position: absolute;
-  left: -100px;
+  left: 50px;
   z-index: 1;
 
   display: flex;
@@ -46,10 +44,16 @@ nav .profile-dropdown button {
 nav .hidden {
   display: none;
 }
-nav #nav-signin-button-container {
+nav .nav-button-container {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
 nav button {
   cursor: pointer;
   box-sizing: border-box;
