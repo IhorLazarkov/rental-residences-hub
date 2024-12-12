@@ -1,7 +1,8 @@
 import './NewSpot.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { createSpot } from '../../store/spots';
+import { createSpot, getSpotDetails, updateSpot } from '../../store/spots';
+import { useParams } from 'react-router-dom';
 
 export default function NewSpot() {
 
@@ -26,7 +27,57 @@ export default function NewSpot() {
     const [isSubmitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState({})
 
+    //when edit
+    const { spotId } = useParams()
+    const { spotReviews } = useSelector(state => state.spots)
+
+    const resetForm = () => {
+        setStreet('')
+        setCity('')
+        setCountry('')
+        setState('')
+        setLatitude(0)
+        setLongitude(0)
+        setDescription('')
+        setName('')
+        setPrice(0)
+        setPreviewImg('')
+        setImage1('')
+        setImage2('')
+        setImage3('')
+        setImage4('')
+    }
+
     useEffect(() => {
+
+        if (spotReviews && spotId) {
+
+            setStreet(spotReviews?.address)
+            setCity(spotReviews?.city)
+            setCountry(spotReviews?.country)
+            setState(spotReviews?.state)
+            setLatitude(spotReviews?.lat)
+            setLongitude(spotReviews?.lng)
+            setDescription(spotReviews?.description)
+            setName(spotReviews?.name)
+            setPrice(spotReviews?.price)
+
+            setPreviewImg(spotReviews.SpotImages.find(i => i.preview).url)
+            spotReviews.SpotImages.filter(i => !i.preview)
+                .forEach(({ url }, i) => {
+                    if (i === 0) setImage1(url)
+                    if (i === 1) setImage2(url)
+                    if (i === 2) setImage3(url)
+                    if (i === 3) setImage4(url)
+                })
+        }
+    }, [spotReviews?.id])
+
+    useEffect(() => {
+        //for edit
+        // if (spotId) dispatch(getSpot(spotId))
+        if (spotId) dispatch(getSpotDetails(spotId))
+        //validations
         setErrors({})
         street === '' && setErrors(prev => prev = { ...prev, street: "Street is required" });
         city === '' && setErrors(prev => prev = { ...prev, city: "City is required" });
@@ -44,7 +95,7 @@ export default function NewSpot() {
             || image1.indexOf('.jpeg') > -1)
         ) setErrors(prev => prev = { ...prev, image: "Image URL must end in .png, .jpg, or .jpeg" });
 
-    }, [street, city, country, state, latitude, longitude, description, name, price, previewImg, image1])
+    }, [dispatch, street, city, country, state, latitude, longitude, description, name, price, previewImg, image1])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -70,26 +121,21 @@ export default function NewSpot() {
         console.log({ errors, newSpot });
         if (Object.entries(errors).length > 0) return;
 
-        dispatch(createSpot(newSpot))
-            .then(() => {
-
-                setStreet('')
-                setCity('')
-                setCountry('')
-                setState('')
-                setLatitude(0)
-                setLongitude(0)
-                setDescription('')
-                setName('')
-                setPrice(0)
-                setPreviewImg('')
-                setImage1('')
-                setImage2('')
-                setImage3('')
-                setImage4('')
-
-                setSubmitted(false);
-            })
+        //update spot
+        if (spotId) {
+            dispatch(updateSpot({ ...newSpot, spotId }))
+                .then(() => {
+                    resetForm();
+                    setSubmitted(false);
+                });
+        } else {
+            //create new spot
+            dispatch(createSpot(newSpot))
+                .then(() => {
+                    resetForm();
+                    setSubmitted(false);
+                })
+        }
     }
 
     return (
@@ -97,14 +143,14 @@ export default function NewSpot() {
             <form
                 id="new-spot-form-container"
                 onSubmit={onSubmit}>
-                <h2>Create a new Spot</h2>
+                <h2>{spotId ? "Update" : "Create a new"} Spot</h2>
                 <h3>Where&apos;s your place located?</h3>
                 <p>
                     Guests will only get your exact address once they booked a reservation.
                 </p>
                 <label htmlFor="country"> Country<span className="error">{isSubmitted && errors?.country}</span></label>
                 <input onChange={(e) => setCountry(e.target.value)} value={country} type="text" name="country" id="country" placeholder='Country' />
-                <label htmlFor="street">Street Adress<span className="error">{isSubmitted && errors?.street}</span> </label>
+                <label htmlFor="street">Street Address<span className="error">{isSubmitted && errors?.street}</span> </label>
                 <input onChange={(e) => setStreet(e.target.value)} value={street} type="text" name="street" id="street" placeholder='Address' />
                 <div className='sub-container'>
                     <span style={{ flexGrow: 1 }}>
@@ -173,7 +219,7 @@ export default function NewSpot() {
                     <button
                         className='primary'
                         type="submit"
-                    >Create Spot</button>
+                    >{spotId ? "Update" : "Create"} Spot</button>
                 </span>
             </form>
         </>

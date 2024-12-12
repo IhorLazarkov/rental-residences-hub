@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function SpotCard({ id, previewImage, city, state, price, avgRating, name }) {
     return (
-        <NavLink to={`${id}`} className="spot-card">
+        <NavLink to={`/${id}`} className="spot-card">
             <img src={previewImage} alt="picture of an apartment" title={name} />
             <div className="spot-card-info">
                 <div className="subcontainer">
