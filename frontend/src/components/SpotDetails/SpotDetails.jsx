@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getSpotDetails } from "../../store/spots"
 import ReviewTile from './ReviewTile';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
 
 export default function SpotDetails() {
     const { spotId } = useParams()
@@ -76,8 +78,15 @@ export default function SpotDetails() {
                 <div className='reviews-summary'>
                     {starArea}
                 </div>
-                {(!isOwner && !hasReviews) && <button className='primary'>Post Your Review</button>}
-                {(reviews.length === 0 && !isOwner) && <div style={{ marginTop: "20px" }}>Be the first to leave a review</div>}
+                {(!isOwner && !hasReviews) && <OpenModalButton
+                    className='primary'
+                    style={{ marginBottom: "20px" }}
+                    buttonText="Post Your Review"
+                    modalComponent={< ReviewModalForm spotId={spotId} />}
+                    onModalClose={() => { }}
+                >Post Your Review
+                </OpenModalButton>}
+                {(reviews.length === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
                     {reviews.map(({ id, User, review, updatedAt, stars }) => {
                         return <ReviewTile

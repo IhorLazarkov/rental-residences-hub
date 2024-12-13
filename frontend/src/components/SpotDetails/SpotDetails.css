@@ -94,6 +94,16 @@ button.critical {
   font-size: medium;
 }
 
+button.disabled{
+  color: rgb(231, 223, 223);
+  background-color: rgb(152, 151, 151);
+  border: 1px solid rgb(231, 223, 223);
+  border-radius: 5px;
+  height: 40px;
+  font-size: medium;
+  cursor: not-allowed;
+}
+
 /* Footer */
 .spot-details-foot {
   border-top: 2px solid black;

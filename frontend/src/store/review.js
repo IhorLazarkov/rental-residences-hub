@@ -2,10 +2,22 @@ import { csrfFetch } from "./csrf"
 
 const LOAD_REVEIWS = "reviews/load"
 
+
 export const getReviews = () => async (dispatch) => {
     const res = await csrfFetch("/api/reviews/current")
-    const dataReviews = await res.json()
-    dispatch(loadReviews(dataReviews))
+    const data = await res.json()
+    dispatch(loadReviews(data))
+    return res;
+}
+
+export const createReview = ({ spotId, stars, review }) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ review, stars })
+    });
+    const data = await res.json();
+    dispatch(loadReviews(data));
     return res;
 }
 
