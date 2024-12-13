@@ -10,11 +10,16 @@ export default function SpotDetails() {
     const { spotId } = useParams()
     const dispatch = useDispatch()
     const { spotReviews } = useSelector(state => state.spots)
+    const { session } = useSelector(state => state)
+    const { id: userId } = session.user || {}
     const { name, city, state, country, description, price, avgStarRating, numReviews } = spotReviews || {}
     const { firstName, lastName } = spotReviews?.Owner || {}
     const images = spotReviews?.SpotImages || []
     const reviews = spotReviews?.Reviews || []
     const previewImage = images.find(i => i.preview)
+    const isOwner = spotReviews?.Owner.id === userId;
+    let hasReviews = !spotReviews?.Reviews.filter(r => r.userId === userId);
+    console.log({ isOwner, hasReviews });
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
@@ -71,6 +76,8 @@ export default function SpotDetails() {
                 <div className='reviews-summary'>
                     {starArea}
                 </div>
+                {(!isOwner && !hasReviews) && <button className='primary'>Post Your Review</button>}
+                {(reviews.length === 0 && !isOwner) && <div style={{ marginTop: "20px" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
                     {reviews.map(({ id, User, review, updatedAt, stars }) => {
                         return <ReviewTile

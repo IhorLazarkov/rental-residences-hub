@@ -32,6 +32,7 @@ export default function ManageSpostPage() {
         {!isLoaded
             ? <h3>Loading ...</h3>
             : <ul id="spots-container">
+                {Spots.length === 0 && <h2>No spots to show</h2>}
                 {Spots.map(spot => {
                     return <div key={spot.id} className="manage-spot-wrapper">
                         <SpotCard

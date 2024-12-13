@@ -45,26 +45,7 @@ export const updateSpot = (updatedSpot) => async (dispatch) => {
             body: JSON.stringify(updatedSpot)
         })
         const dataUpdateSpot = await resSpot.json()
-        // const { previewImg } = updatedSpot
-        // //save images
-        // const resPreviewImg = await csrfFetch(`/api/spots/${id}/images`, {
-        //     method: "PUT",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ url: previewImg, preview: true })
-        // })
-        // const dataImages = await resPreviewImg.json()
-        // Array.from(["image1", "image2", "image3", "image4"])
-        //     .map(name => updatedSpot[name])
-        //     .filter(url => url !== '')
-        //     .forEach(async url => {
-        //         await csrfFetch(`/api/spots/${id}/images`, {
-        //             method: "PUT",
-        //             headers: { "Content-Type": "application/json" },
-        //             body: JSON.stringify({ url, preview: false })
-        //         })
-        //     });
         dispatch(newSpot({ ...dataUpdateSpot}))
-        //return
         return { resSpot};
 }
 
