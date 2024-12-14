@@ -148,6 +148,7 @@ export default function SpotDetails() {
                             {userId && User.id === userId && <OpenModalButton
                                 key={reviewId + userId}
                                 className="critical"
+                                style={{marginBottom:"10px"}}
                                 buttonText="Delete Review"
                                 modalComponent={<DeleteConfirmatinModal
                                     reviewId={reviewId}
