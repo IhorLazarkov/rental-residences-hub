@@ -7,6 +7,7 @@ import ReviewTile from './ReviewTile';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
 import { deleteReview, getReviews } from '../../store/review';
+import DeleteConfirmatinModal from '../DeleteConfirmationModal/DeleteConfirmatinModal';
 
 export default function SpotDetails() {
     const { spotId } = useParams()
@@ -71,9 +72,9 @@ export default function SpotDetails() {
         else setUserId(user)
     }, [user])
 
-    const onDelete = (reviewId) => {
-        dispatch(deleteReview(reviewId))
-    }
+    // const onDelete = (reviewId) => {
+    //     dispatch(deleteReview(reviewId))
+    // }
 
     const starArea = numReviews === 0
         ? <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />New</span>
@@ -144,12 +145,19 @@ export default function SpotDetails() {
                                 stars={stars}
                                 review={review}
                             />
-                            {userId && User.id === userId && <button
+                            {userId && User.id === userId && <OpenModalButton
                                 key={reviewId + userId}
-                                className='critical'
-                                style={{ marginBottom: "10px" }}
-                                onClick={() => onDelete({ reviewId, spotId })}
-                            >Delete</button>}
+                                className="critical"
+                                buttonText="Delete Review"
+                                modalComponent={<DeleteConfirmatinModal
+                                    reviewId={reviewId}
+                                    spotId={spotId}
+                                    title="Confirm Delete"
+                                    message="Are you sure you want to delete this review?"
+                                    confirmMessage="Yes (Delete Review)"
+                                    abortMessage="No (Keep Review)"
+                                />}
+                            />}
                         </>
                     })}
                 </div>

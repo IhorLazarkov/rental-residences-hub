@@ -29,6 +29,8 @@ export const createReview = ({ spotId, stars, review }) => async (dispatch) => {
 export const deleteReview = ({ reviewId, spotId }) => async (dispatch) => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
+    }).catch(err => {
+        return err;
     });
     await dispatch(getReviews(spotId))
     return res;
