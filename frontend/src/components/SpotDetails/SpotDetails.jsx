@@ -1,37 +1,85 @@
 import './SpotDetails.css'
 import { IoIosStar } from "react-icons/io";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getSpotDetails } from "../../store/spots"
 import ReviewTile from './ReviewTile';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
+import { deleteReview, getReviews } from '../../store/review';
 
 export default function SpotDetails() {
     const { spotId } = useParams()
+
     const dispatch = useDispatch()
-    const { spotReviews } = useSelector(state => state.spots)
-    const { session } = useSelector(state => state)
-    const { id: userId } = session.user || {}
-    const { name, city, state, country, description, price, avgStarRating, numReviews } = spotReviews || {}
-    const { firstName, lastName } = spotReviews?.Owner || {}
-    const images = spotReviews?.SpotImages || []
-    const reviews = spotReviews?.Reviews || []
-    const previewImage = images.find(i => i.preview)
-    const isOwner = spotReviews?.Owner.id === userId;
-    let hasReviews = !spotReviews?.Reviews.filter(r => r.userId === userId);
-    console.log({ isOwner, hasReviews });
+    const spot = useSelector(state => state.reviews)
+    const { user } = useSelector(state => state.session)
+    const [reviews, setReviews] = useState([])
+
+    //Spot related stuff
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [name, setName] = useState('')
+    const [city, setCity] = useState('')
+    const [country, setCountry] = useState('')
+    const [state, setState] = useState('')
+    const [description, setDescription] = useState('')
+    const [previewImage, setPreviewImage] = useState({})
+    const [images, setImages] = useState([{}])
+    const [price, setPrice] = useState()
+    const [avgStarRating, setRating] = useState(0)
+    const [numReviews, setNumReviews] = useState(0)
+
+    //Review logic
+    const [isOwner, setIsOwner] = useState(false)
+    const [hasReviews, setHasReviews] = useState(false)
+    const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        dispatch(getSpotDetails(spotId))
+        dispatch(getReviews(spotId))
     }, [dispatch, spotId])
 
-    const starArea = avgStarRating === "0.0"
+    useEffect(() => {
+        if (Object.entries(spot).length > 0) {
+            setFirstName(spot.Owner.firstName)
+            setLastName(spot.Owner.lastName)
+            setName(spot.name)
+            setCity(spot.city)
+            setCountry(spot.country)
+            setState(spot.state)
+            setDescription(spot.description)
+            setPrice(spot.price)
+            setRating(spot.avgStarRating)
+            setNumReviews(spot.numReviews)
+
+            setReviews(spot.Reviews)
+            const spotImages = spot.SpotImages.filter(i => !i.preview)
+            setImages(spotImages)
+            const showcaseImage = spot.SpotImages.find(i => i.preview)
+            setPreviewImage(showcaseImage)
+
+            if (userId) {
+                setIsOwner(spot.Owner.id === userId)
+                const isReviewes = spot.Reviews.filter(r => r.userId === userId).length !== 0;
+                setHasReviews(isReviewes)
+            }
+        }
+    }, [spot])
+
+    useEffect(() => {
+        if (user) setUserId(user.id)
+        else setUserId(user)
+    }, [user])
+
+    const onDelete = (reviewId) => {
+        dispatch(deleteReview(reviewId))
+    }
+
+    const starArea = numReviews === 0
         ? <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />New</span>
         : <>
             <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />{avgStarRating} &#183; </span>
-            <span>{numReviews} reviews</span>
+            <span>{numReviews === 1 ? `${numReviews} review` : `${numReviews} reviews`}</span>
         </>
 
     return (
@@ -44,14 +92,14 @@ export default function SpotDetails() {
             <div className='spot-details-body'>
                 <div className='photos-container'>
                     <img className="preview"
-                        src={previewImage && previewImage.url}
+                        src={previewImage?.url}
                         alt="preview image" />
                     <div className='images'>
-                        {images.filter(i => !i.preview).map(({ id, url }) => {
+                        {images.map(({ id, url }) => {
                             return <img
                                 key={id}
                                 src={url}
-                                alt="image of a property" />
+                                alt="image of a spot" />
                         })}
                     </div>
                 </div>
@@ -78,26 +126,32 @@ export default function SpotDetails() {
                 <div className='reviews-summary'>
                     {starArea}
                 </div>
-                {(!isOwner && !hasReviews) && <OpenModalButton
+                {(!isOwner && !hasReviews && userId) && <OpenModalButton
                     className='primary'
                     style={{ marginBottom: "20px" }}
                     buttonText="Post Your Review"
                     modalComponent={< ReviewModalForm spotId={spotId} />}
-                    onModalClose={() => { }}
                 >Post Your Review
                 </OpenModalButton>}
-                {(reviews.length === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
+                {(numReviews === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
-                    {reviews.map(({ id, User, review, updatedAt, stars }) => {
-                        return <ReviewTile
-                            key={id}
-                            name={User.firstName}
-                            date={updatedAt}
-                            stars={stars}
-                            review={review}
-                        />
-                    })
-                    }
+                    {reviews.map(({ id: reviewId, User, review, updatedAt, stars }) => {
+                        return <>
+                            <ReviewTile
+                                key={reviewId}
+                                name={User.firstName}
+                                date={updatedAt}
+                                stars={stars}
+                                review={review}
+                            />
+                            {userId && User.id === userId && <button
+                                key={reviewId + userId}
+                                className='critical'
+                                style={{ marginBottom: "10px" }}
+                                onClick={() => onDelete({ reviewId, spotId })}
+                            >Remove</button>}
+                        </>
+                    })}
                 </div>
             </div>
         </div>

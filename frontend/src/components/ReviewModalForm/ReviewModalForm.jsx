@@ -4,6 +4,7 @@ import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { createReview } from '../../store/review';
+import { useModal } from '../../context/Modal';
 
 export default function ReviewModalForm({ spotId }) {
 
@@ -11,6 +12,8 @@ export default function ReviewModalForm({ spotId }) {
     const [review, setReview] = useState('')
     const [isDisabled, setDisabled] = useState(true)
     const [stars, setStars] = useState(0)
+    const [error, setError] = useState('')
+    const { closeModal } = useModal()
 
     useEffect(() => {
         if (review.length >= 10) setDisabled(false)
@@ -20,6 +23,15 @@ export default function ReviewModalForm({ spotId }) {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createReview({ spotId, stars, review }))
+            .then(res => {
+                if (!res.ok) {
+                    console.log('res :>> ', res);
+                    setError(`${res.message} ${Object.entries(res?.errors).map(([key, message]) => `${key}: ${message}`)}`)
+                } else {
+                    setError('')
+                    closeModal()
+                }
+            })
     }
 
     return (
@@ -27,6 +39,7 @@ export default function ReviewModalForm({ spotId }) {
             className='review-dialog-container'
             onSubmit={onSubmit}>
             <h2>How was Your stay?</h2>
+            {error !== '' && <span style={{ marginBottom: "10px" }} className='error'>{error}</span>}
             <textarea
                 onChange={e => setReview(e.target.value)}
                 name="" id="" placeholder='Leave Your review here ...'
