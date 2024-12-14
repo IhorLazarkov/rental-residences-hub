@@ -7,7 +7,7 @@ import LandingPage from "./components/LandingPage";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
 import NewSpot from "./components/NewSpot/NewSpotForm";
 import ManageSpostPage from "./components/ManageSpots/ManageSpostPage";
-import ManageReviewsPage from "./components/ManageReviews/ManageReviewsPage";
+import ManageReviewsPage from "./components/ManageReviews";
 
 
 function Layout() {

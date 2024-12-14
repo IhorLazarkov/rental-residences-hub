@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 import ReviewTile from './ReviewTile';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
-import { deleteReview, getReviews } from '../../store/review';
+import { getReviews } from '../../store/review';
 import DeleteConfirmatinModal from '../DeleteConfirmationModal/DeleteConfirmatinModal';
 
 export default function SpotDetails() {
@@ -71,10 +71,6 @@ export default function SpotDetails() {
         if (user) setUserId(user.id)
         else setUserId(user)
     }, [user])
-
-    // const onDelete = (reviewId) => {
-    //     dispatch(deleteReview(reviewId))
-    // }
 
     const starArea = numReviews === 0
         ? <span className='rating'><IoIosStar style={{ fontSize: "18px" }} />New</span>
@@ -145,20 +141,32 @@ export default function SpotDetails() {
                                 stars={stars}
                                 review={review}
                             />
-                            {userId && User.id === userId && <OpenModalButton
-                                key={reviewId + userId}
-                                className="critical"
-                                style={{marginBottom:"10px"}}
-                                buttonText="Delete Review"
-                                modalComponent={<DeleteConfirmatinModal
-                                    reviewId={reviewId}
-                                    spotId={spotId}
-                                    title="Confirm Delete"
-                                    message="Are you sure you want to delete this review?"
-                                    confirmMessage="Yes (Delete Review)"
-                                    abortMessage="No (Keep Review)"
-                                />}
-                            />}
+                            {userId && User.id === userId && <div className="review-actions-container">
+                                <OpenModalButton
+                                    key={spotId + reviewId}
+                                    className="secondary"
+                                    buttonText="Update"
+                                    modalComponent={<ReviewModalForm
+                                        spotId={spotId}
+                                        reviewId={reviewId}
+                                        reviewMessage={review}
+                                        starsInit={stars} />
+                                    } />
+                                <OpenModalButton
+                                    key={reviewId + spotId}
+                                    className="critical"
+                                    buttonText="Delete"
+                                    modalComponent={<DeleteConfirmatinModal
+                                        reviewId={reviewId}
+                                        spotId={spotId}
+                                        title="Confirm Delete"
+                                        message="Are you sure you want to delete this review?"
+                                        confirmMessage="Yes (Delete Review)"
+                                        abortMessage="No (Keep Review)"
+                                    />}
+                                />
+                            </div>
+                            }
                         </>
                     })}
                 </div>
