@@ -64,6 +64,7 @@ function ProfileButton({ user }) {
             <li>{user.email}</li>
             <li><hr /></li>
             <li><NavLink to={`/spots/current`}>Manage Spots</NavLink></li>
+            <li><NavLink to={`/reviews/current`}>Manage Reviews</NavLink></li>
             <li><hr /></li>
             <li>
               <button onClick={logout}>Log Out</button>

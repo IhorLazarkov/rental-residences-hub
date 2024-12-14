@@ -7,6 +7,7 @@ import LandingPage from "./components/LandingPage";
 import SpotDetails from "./components/SpotDetails/SpotDetails";
 import NewSpot from "./components/NewSpot/NewSpotForm";
 import ManageSpostPage from "./components/ManageSpots/ManageSpostPage";
+import ManageReviewsPage from "./components/ManageReviews/ManageReviewsPage";
 
 
 function Layout() {
@@ -48,8 +49,12 @@ const router = createBrowserRouter([
         element: <NewSpot />
       },
       {
-        path:"spots/current",
+        path: "spots/current",
         element: <ManageSpostPage />
+      },
+      {
+        path: "/reviews/current",
+        element: <ManageReviewsPage />
       }
     ]
   }
