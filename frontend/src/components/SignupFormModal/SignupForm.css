@@ -1,4 +1,20 @@
-form {
+form#signup-form {
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-direction: column;
+  align-content: center;
+  gap: 10px;
+}
+
+#signup-form >h2,
+#signup-form input {
+  width: 100%;
+}
+#signup-form >h2{
+  text-align: center;
+}
+
+#signup-form > button {
+  margin-bottom: 19px;
 }

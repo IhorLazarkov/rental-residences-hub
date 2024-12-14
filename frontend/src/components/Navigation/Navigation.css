@@ -34,9 +34,10 @@ nav .profile-dropdown {
 nav ul.profile-dropdown{
   padding: 10px;
   margin: 10px;
+  width: 100%;
   min-height: 100px;
   min-width: 170px;
-
+  max-width: 230px;
 }
 
 nav .profile-dropdown button {

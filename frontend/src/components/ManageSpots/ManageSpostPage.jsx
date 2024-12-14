@@ -24,43 +24,47 @@ export default function ManageSpostPage() {
 
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
-    return (<>
-        {!isLoaded
-            ? <h3>Loading ...</h3>
-            : <ul id="spots-container">
-                {Spots.length === 0 && <h2>No spots to show</h2>}
-                {Spots.map(spot => {
-                    return <div key={spot.id} className="manage-spot-wrapper">
-                        <SpotCard
-                            key={spot.id}
-                            id={spot.id}
-                            name={spot?.name}
-                            previewImage={spot.SpotImages[0].url}
-                            city={spot?.city}
-                            state={spot?.state}
-                            price={spot?.price}
-                            avgRating={spot?.avgRating}
-                        />
-                        <div className="manage-spot-actions">
-                            <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
-                            <OpenModalButton
-                                className='critical'
-                                spotId={spot.id}
-                                buttonText="Delete"
-                                modalComponent={<DeleteConfirmatinModal
-                                    spotId={spot.id}
-                                    title="Confirm Delete"
-                                    message="Are you sure you want to delete this spot?"
-                                    confirmMessage="Yes (Delete Spot)"
-                                    abortMessage="No (Keep Spot)"
-                                />}
-                            />
-                            {/* <button onClick={() => onDelete(spot.id)} className="critical">Delete</button> */}
-                        </div>
-                    </div>
-                })}
-            </ul>
-        }
-    </>
+    return (
+        <div className="manage-spots-container">
+            <h1>Manage Spots</h1>
+            {!isLoaded
+                ? <h3>Loading ...</h3>
+                : <>
+                    {Spots.length === 0 && <h2>No spots to show</h2>}
+                    <ul id="spots-container">
+                        {Spots.map(spot => {
+                            return <div key={spot.id} className="manage-spot-wrapper">
+                                <SpotCard
+                                    key={spot.id}
+                                    id={spot.id}
+                                    name={spot?.name}
+                                    previewImage={spot.SpotImages[0].url}
+                                    city={spot?.city}
+                                    state={spot?.state}
+                                    price={spot?.price}
+                                    avgRating={spot?.avgRating}
+                                />
+                                <div className="manage-spot-actions">
+                                    <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
+                                    <OpenModalButton
+                                        className='critical'
+                                        spotId={spot.id}
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteConfirmatinModal
+                                            spotId={spot.id}
+                                            title="Confirm Delete"
+                                            message="Are you sure you want to delete this spot?"
+                                            confirmMessage="Yes (Delete Spot)"
+                                            abortMessage="No (Keep Spot)"
+                                        />}
+                                    />
+                                    {/* <button onClick={() => onDelete(spot.id)} className="critical">Delete</button> */}
+                                </div>
+                            </div>
+                        })}
+                    </ul>
+                </>
+            }
+        </div>
     );
 }

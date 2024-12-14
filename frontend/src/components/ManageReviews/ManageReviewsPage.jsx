@@ -19,11 +19,12 @@ export default function ManageReviewsPage() {
     }, [dispatch])
 
     useEffect(() => {
-        Reviews.length > 0 && setReviews(Reviews)
+        if (Reviews)
+            Reviews.length > 0 && setReviews(Reviews)
     }, [Reviews])
 
     return (
-        <div className="manage-revies-container">
+        <div className="manage-reviews-container">
             <h1>Manage Reviews</h1>
             {!isLoaded
                 ? <h2>Loading ...</h2>
@@ -40,7 +41,7 @@ export default function ManageReviewsPage() {
                             />
                             <div className="review-actions-container">
                                 <OpenModalButton
-                                    key={spotId + reviewId +1}
+                                    key={spotId + reviewId + 1}
                                     className="secondary"
                                     buttonText="Update"
                                     modalComponent={<ReviewModalForm

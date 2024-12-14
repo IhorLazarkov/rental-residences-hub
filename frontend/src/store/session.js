@@ -54,9 +54,16 @@ export const signup = (user) => async (dispatch) => {
             email,
             password
         })
-    })
-    const data = await res.json()
-    dispatch(setUser(data))
+    }).catch(async err => {
+        const data = await err.text();
+        const { message, errors } = JSON.parse(data)
+        console.log({ message, errors });
+        return { ok: err.ok, status: err.status, message, errors };
+    });
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(setUser(data));
+    }
     return res;
 }
 

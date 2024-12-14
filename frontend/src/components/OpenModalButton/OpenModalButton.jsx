@@ -17,12 +17,10 @@ export default function OpenModalButton({
     };
 
     return (
-        <>
-            <button
-                className={className}
-                style={style}
-                onClick={onClick}
-            >{buttonText}</button>
-        </>
+        <button
+            className={className}
+            style={style}
+            onClick={onClick}
+        >{buttonText}</button>
     );
 }
