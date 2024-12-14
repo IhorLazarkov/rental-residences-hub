@@ -8,52 +8,56 @@ export default function LoginFormModal() {
     const dispatch = useDispatch()
     const [credential, setCredential] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState('')
+    const [error, setError] = useState('')
     const { closeModal } = useModal()
 
     const onSubmit = (e) => {
         e.preventDefault()
-        setErrors('')
+        setError('')
         dispatch(
             sessionActions.login({
                 credential,
                 password
             }))
             .then((res) => {
+                console.log('res :>> ', res);
                 if (res.ok)
                     closeModal()
                 else
-                    setErrors(res.statusText);
+                    setError(res.message);
             });
     };
 
     return (
         <>
-            <h1>Log In</h1>
-            <form method="POST">
-                <div>
+            <form
+                id="login-form"
+                onSubmit={onSubmit}>
+                <h2>Log In</h2>
+                {error && <span className="error">{error}</span>}
+                <section>
                     <label htmlFor="username">Username or Email</label>
                     <input
                         type="text"
                         name="username"
                         id="username"
+                        placeholder="Username or Email"
                         onChange={(e) => setCredential(e.target.value)} />
-                </div>
-                <div>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         name="password"
                         id="password"
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                {errors && <span className="error">{errors}</span>}
-                <button
-                    type="submit"
-                    onClick={onSubmit}
-                >
-                    Login
-                </button>
+                    <button
+                        type="submit"
+                        className={credential !== '' && password !== '' ? "primary" : "disabled"}
+                    >
+                        Login
+                    </button>
+                </section>
+                <a href="">Demo User</a>
             </form>
         </>
     );

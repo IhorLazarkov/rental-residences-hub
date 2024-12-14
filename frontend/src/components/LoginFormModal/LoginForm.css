@@ -1,5 +1,26 @@
-form {
+form#login-form{
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
+  gap: 5px
+}
+#login-form > h2 {
+  margin-bottom: 3px;
+}
+#login-form > section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+#login-form > section > div {
+  display: flex;
+  flex-direction: column;
+}
+#login-form > button {
+  width: 100%;
+}
+#login-form > a {
+  font-weight: 500;
 }
