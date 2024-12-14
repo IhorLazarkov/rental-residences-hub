@@ -11,13 +11,13 @@ export default function DeleteConfirmatinModal({ reviewId, spotId, title, messag
     const [error, setError] = useState('')
 
     const onDelete = () => {
-        dispatch(deleteReview({reviewId, spotId}))
+        dispatch(deleteReview({ reviewId, spotId }))
             .then((res) => {
                 if (!res.ok) {
-                    console.log('res :>> ', res);
                     setError(res.statusText)
-                } else
+                } else {
                     closeModal()
+                }
             })
     }
 
@@ -25,7 +25,7 @@ export default function DeleteConfirmatinModal({ reviewId, spotId, title, messag
         <div className="confirm-modal-dialog-container">
             <h2>{title}</h2>
             <h3>{message}</h3>
-            {error && <span class="error">Error: {error}</span>}
+            {error && <span className="error">Error: {error}</span>}
             <button className="critical" onClick={onDelete}>{confirmMessage}</button>
             <button className="secondary" onClick={closeModal}>{abortMessage}</button>
         </div>

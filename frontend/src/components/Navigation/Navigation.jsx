@@ -1,6 +1,6 @@
 // frontend/src/components/Navigation/Navigation.jsx
 
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -16,6 +16,7 @@ function Navigation({ isLoaded }) {
           <ProfileButton user={sessionUser} />
         </div>
       )}
+      {!sessionUser && <Navigate to="/"/>}
     </nav>
   );
 }

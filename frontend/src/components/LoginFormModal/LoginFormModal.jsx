@@ -8,24 +8,23 @@ export default function LoginFormModal() {
     const dispatch = useDispatch()
     const [credential, setCredential] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState('')
     const { closeModal } = useModal()
 
     const onSubmit = (e) => {
         e.preventDefault()
-        setErrors({})
+        setErrors('')
         dispatch(
             sessionActions.login({
                 credential,
                 password
             }))
-            .then(closeModal)
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    if (data?.errors) setErrors(data.errors);
-                }
-            );
+            .then((res) => {
+                if (res.ok)
+                    closeModal()
+                else
+                    setErrors(res.statusText);
+            });
     };
 
     return (
@@ -34,7 +33,6 @@ export default function LoginFormModal() {
             <form method="POST">
                 <div>
                     <label htmlFor="username">Username or Email</label>
-
                     <input
                         type="text"
                         name="username"
@@ -49,7 +47,7 @@ export default function LoginFormModal() {
                         id="password"
                         onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                {errors.credential && <p id="error-container">{errors.credential}</p>}
+                {errors && <span className="error">{errors}</span>}
                 <button
                     type="submit"
                     onClick={onSubmit}
