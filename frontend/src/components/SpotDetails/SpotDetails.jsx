@@ -130,7 +130,7 @@ export default function SpotDetails() {
                     modalComponent={< ReviewModalForm spotId={spotId} />}
                 >Post Your Review
                 </OpenModalButton>}
-                {(numReviews === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
+                {(numReviews === 0 && !isOwner) && <div style={{ margin: "10px 0" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
                     {reviews.map(({ id: reviewId, User, review, updatedAt, stars }) => {
                         return <>
@@ -141,7 +141,7 @@ export default function SpotDetails() {
                                 stars={stars}
                                 review={review}
                             />
-                            {userId && User.id === userId && <div className="review-actions-container">
+                            {userId && User.id === userId && <div style={{ marginBottom: "10px" }} className="review-actions-container">
                                 <OpenModalButton
                                     key={spotId + reviewId}
                                     className="secondary"

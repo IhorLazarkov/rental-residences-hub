@@ -40,12 +40,12 @@ export default function ManageReviewsPage() {
                             />
                             <div className="review-actions-container">
                                 <OpenModalButton
-                                    key={spotId + reviewId}
+                                    key={spotId + reviewId +1}
                                     className="secondary"
                                     buttonText="Update"
                                     modalComponent={<ReviewModalForm
                                         spotId={spotId}
-                                        spotName={Spot.name}
+                                        spotName={Spot?.name}
                                         reviewId={reviewId}
                                         reviewMessage={review}
                                         starsInit={stars} />

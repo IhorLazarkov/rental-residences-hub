@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal"
 import { deleteReview } from "../../store/review"
 import { useState } from "react"
 import "./DeleteConfirmation.css";
+import { deleteSpot } from "../../store/spots";
 
 export default function DeleteConfirmatinModal({ reviewId, spotId, title, message, confirmMessage, abortMessage }) {
 
@@ -11,14 +12,19 @@ export default function DeleteConfirmatinModal({ reviewId, spotId, title, messag
     const [error, setError] = useState('')
 
     const onDelete = () => {
-        dispatch(deleteReview({ reviewId, spotId }))
-            .then((res) => {
-                if (!res.ok) {
-                    setError(res.statusText)
-                } else {
-                    closeModal()
-                }
-            })
+        if (reviewId && spotId) {
+            dispatch(deleteReview({ reviewId, spotId }))
+                .then((res) => {
+                    if (!res.ok) {
+                        setError(res.statusText)
+                    } else {
+                        closeModal()
+                    }
+                })
+        } else if (!reviewId && spotId) {
+            dispatch(deleteSpot(spotId))
+                .then(closeModal)
+        }
     }
 
     return (

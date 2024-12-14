@@ -3,9 +3,9 @@ import "./ManageSpot.css"
 import { useEffect, useState } from "react";
 import { deleteSpot, loadCurrentSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
-import { AiOutlineDelete } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteConfirmatinModal from "../DeleteConfirmationModal/DeleteConfirmatinModal";
 
 export default function ManageSpostPage() {
 
@@ -22,9 +22,9 @@ export default function ManageSpostPage() {
         setRedirect(`/spots/${spotId}/edit`);
     }
 
-    const onDelete = (spotId) => {
-        dispatch(deleteSpot(spotId))
-    }
+    // const onDelete = (spotId) => {
+    //     dispatch(deleteSpot(spotId))
+    // }
 
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
@@ -46,8 +46,20 @@ export default function ManageSpostPage() {
                             avgRating={spot?.avgRating}
                         />
                         <div className="manage-spot-actions">
-                            <button onClick={() => onUpdate(spot.id)} className="secondary"><FaRegEdit style={{ fontSize: "18px" }} />Update</button>
-                            <button onClick={() => onDelete(spot.id)} className="critical"><AiOutlineDelete style={{ fontSize: "18px" }} />Delete</button>
+                            <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
+                            <OpenModalButton
+                                className='critical'
+                                spotId={spot.id}
+                                buttonText="Delete"
+                                modalComponent={<DeleteConfirmatinModal
+                                    spotId={spot.id}
+                                    title="Confirm Delete"
+                                    message="Are you sure you want to delete this spot?"
+                                    confirmMessage="Yes (Delete Spot)"
+                                    abortMessage="No (Keep Spot)"
+                                />}
+                            />
+                            {/* <button onClick={() => onDelete(spot.id)} className="critical">Delete</button> */}
                         </div>
                     </div>
                 })}
