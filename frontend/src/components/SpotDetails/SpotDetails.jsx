@@ -149,7 +149,7 @@ export default function SpotDetails() {
                                 className='critical'
                                 style={{ marginBottom: "10px" }}
                                 onClick={() => onDelete({ reviewId, spotId })}
-                            >Remove</button>}
+                            >Delete</button>}
                         </>
                     })}
                 </div>
