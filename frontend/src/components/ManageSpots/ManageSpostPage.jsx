@@ -22,10 +22,6 @@ export default function ManageSpostPage() {
         setRedirect(`/spots/${spotId}/edit`);
     }
 
-    // const onDelete = (spotId) => {
-    //     dispatch(deleteSpot(spotId))
-    // }
-
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
     return (<>

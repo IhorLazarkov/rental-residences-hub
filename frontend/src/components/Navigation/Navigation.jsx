@@ -12,11 +12,11 @@ function Navigation({ isLoaded }) {
     <nav>
       <NavLink id="logo" to="/">rental residence hub</NavLink>
       {isLoaded && (
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", minWidth:"150px" }}>
           <ProfileButton user={sessionUser} />
         </div>
       )}
-      {!sessionUser && <Navigate to="/"/>}
+      {!sessionUser && <Navigate to="/" replace={true} />}
     </nav>
   );
 }
