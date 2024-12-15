@@ -8,25 +8,35 @@ export default function LoginFormModal() {
     const dispatch = useDispatch()
     const [credential, setCredential] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+    const [errors, setErrors] = useState({})
     const { closeModal } = useModal()
 
     const onSubmit = (e) => {
         e.preventDefault()
-        setError('')
+        setErrors('')
         dispatch(
             sessionActions.login({
                 credential,
                 password
             }))
             .then((res) => {
-                console.log('res :>> ', res);
                 if (res.ok)
                     closeModal()
                 else
-                    setError(res.message);
+                    setErrors({ message: "The provided credentials were invalid" })
             });
     };
+
+    const onDemoLogin = (e) => {
+        e.preventDefault();
+        dispatch(
+            sessionActions.login({
+                credential: "Demo-lition",
+                password: "password"
+            })).then(res => {
+                if (res.ok) closeModal();
+            })
+    }
 
     return (
         <>
@@ -34,7 +44,7 @@ export default function LoginFormModal() {
                 id="login-form"
                 onSubmit={onSubmit}>
                 <h2>Log In</h2>
-                {error && <span className="error">{error}</span>}
+                {Object.entries(errors).map(([key, message]) => <span className="error" key={key}>{message}</span>)}
                 <section>
                     <label htmlFor="username">Username or Email</label>
                     <input
@@ -52,12 +62,14 @@ export default function LoginFormModal() {
                         onChange={(e) => setPassword(e.target.value)} />
                     <button
                         type="submit"
-                        className={credential !== '' && password !== '' ? "primary" : "disabled"}
+                        className={credential.length > 4 || password.length > 6
+                            ? "primary"
+                            : "disabled"}
                     >
                         Login
                     </button>
                 </section>
-                <a href="">Demo User</a>
+                <a href="" onClick={onDemoLogin}>Log In as Demo User</a>
             </form>
         </>
     );

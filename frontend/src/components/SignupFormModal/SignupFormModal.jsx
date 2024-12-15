@@ -33,7 +33,6 @@ export default function SignupFormModal() {
                 })
             ).then((res) => {
                 if (!res.ok) {
-                    console.log('res :>> ', res);
                     setErrors(res.errors);
                 } else {
                     closeModal()
@@ -43,11 +42,8 @@ export default function SignupFormModal() {
     };
 
     useEffect(() => {
-        setEnabled(
-            (email !== '' || username)
-            && (password !== '' && confirmPassword !== '' && confirmPassword === password)
-        )
-    }, [email, username, password, confirmPassword])
+        setEnabled(username.length > 4 || password.length > 6)
+    }, [username, password])
 
     return (
         <form

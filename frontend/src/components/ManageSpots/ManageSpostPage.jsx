@@ -58,7 +58,6 @@ export default function ManageSpostPage() {
                                             abortMessage="No (Keep Spot)"
                                         />}
                                     />
-                                    {/* <button onClick={() => onDelete(spot.id)} className="critical">Delete</button> */}
                                 </div>
                             </div>
                         })}

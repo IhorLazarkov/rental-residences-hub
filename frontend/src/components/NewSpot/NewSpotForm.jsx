@@ -12,16 +12,17 @@ export default function NewSpot() {
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
     const [state, setState] = useState('')
-    const [latitude, setLatitude] = useState(0)
-    const [longitude, setLongitude] = useState(0)
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
     const [description, setDescription] = useState('')
     const [name, setName] = useState('')
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState('')
     const [previewImg, setPreviewImg] = useState('')
     const [image1, setImage1] = useState('')
     const [image2, setImage2] = useState('')
     const [image3, setImage3] = useState('')
     const [image4, setImage4] = useState('')
+    const [isEnabled, setEnabled] = useState(false)
 
     //Errors
     const [isSubmitted, setSubmitted] = useState(false)
@@ -36,11 +37,11 @@ export default function NewSpot() {
         setCity('')
         setCountry('')
         setState('')
-        setLatitude(0)
-        setLongitude(0)
+        setLatitude('')
+        setLongitude('')
         setDescription('')
         setName('')
-        setPrice(0)
+        setPrice('')
         setPreviewImg('')
         setImage1('')
         setImage2('')
@@ -75,19 +76,21 @@ export default function NewSpot() {
 
     useEffect(() => {
         //for edit
-        // if (spotId) dispatch(getSpot(spotId))
-        if (spotId) dispatch(getSpotDetails(spotId))
+        if (spotId) dispatch(getSpotDetails(spotId)).then(() => {
+            //manage enable of button
+            Object.values(errors).length === 0 || spotId ? setEnabled(true) : setEnabled(false)
+        })
         //validations
         setErrors({})
         street === '' && setErrors(prev => prev = { ...prev, street: "Street is required" });
         city === '' && setErrors(prev => prev = { ...prev, city: "City is required" });
         country === '' && setErrors(prev => prev = { ...prev, country: "Country is required" });
         state === '' && setErrors(prev => prev = { ...prev, state: "State is required" });
-        latitude === 0 && setErrors(prev => prev = { ...prev, latitude: "required" });
-        longitude === 0 && setErrors(prev => prev = { ...prev, longitude: "required" });
+        latitude === '' && setErrors(prev => prev = { ...prev, latitude: "required" });
+        longitude === '' && setErrors(prev => prev = { ...prev, longitude: "required" });
         if (description === '' || description.length < 30) setErrors(prev => prev = { ...prev, description: "Description needs a minimum of 30 characters" });
         name === '' && setErrors(prev => prev = { ...prev, name: "Name is required" });
-        price === 0 && setErrors(prev => prev = { ...prev, price: "Price is required" });
+        price === '' && setErrors(prev => prev = { ...prev, price: "Price is required" });
         previewImg === '' && setErrors(prev => prev = { ...prev, previewImg: "Preview image is required" });
         if (image1 !== '' && !(
             image1.indexOf('.png') > -1
@@ -118,7 +121,6 @@ export default function NewSpot() {
             image4
         }
 
-        console.log({ errors, newSpot });
         if (Object.entries(errors).length > 0) return;
 
         //update spot
@@ -126,6 +128,7 @@ export default function NewSpot() {
             dispatch(updateSpot({ ...newSpot, spotId }))
                 .then(() => {
                     resetForm();
+                    setEnabled(false);
                     setSubmitted(false);
                 });
         } else {
@@ -133,6 +136,7 @@ export default function NewSpot() {
             dispatch(createSpot(newSpot))
                 .then(() => {
                     resetForm();
+                    setEnabled(false);
                     setSubmitted(false);
                 })
         }
@@ -200,7 +204,7 @@ export default function NewSpot() {
                     in each results.
                 </p>
                 <span style={{ display: "flex", alignItems: "center", width: "100%", gap: "5px" }}>
-                    $ <input onChange={(e) => setPrice(e.target.value)} value={price} style={{ width: "100%" }} type="text" placeholder='Price per night (USD)' />
+                    $ <input onChange={(e) => setPrice(e.target.value)} value={price} style={{ width: "100%" }} type="number" placeholder='Price per night (USD)' />
                     <span className="error">{isSubmitted && errors?.price}</span>
                 </span>
                 <hr />
@@ -215,12 +219,10 @@ export default function NewSpot() {
                 <input onChange={(e) => setImage2(e.target.value)} value={image2} type="text" placeholder='Image URL' />
                 <input onChange={(e) => setImage3(e.target.value)} value={image3} type="text" placeholder='Image URL' />
                 <input onChange={(e) => setImage4(e.target.value)} value={image4} type="text" placeholder='Image URL' />
-                <span>
-                    <button
-                        className='primary'
-                        type="submit"
-                    >{spotId ? "Update" : "Create"} Spot</button>
-                </span>
+                <button
+                    className={isEnabled ? "primary" : "disabled"}
+                    type="submit"
+                >{spotId ? "Update" : "Create"} Spot</button>
             </form>
         </>
     );

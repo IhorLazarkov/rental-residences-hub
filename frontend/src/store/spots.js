@@ -82,10 +82,10 @@ export const loadCurrentSpots = () => async (dispatch) => {
     return res;
 }
 
-const newSpot = (spot) => {
+const newSpot = (newSpot) => {
     return {
         type: NEW_SPOT,
-        spot
+        newSpot
     }
 };
 function loadSpots(spots) {
@@ -105,7 +105,7 @@ export default function spotsReducer(status = {}, action) {
     switch (action.type) {
 
         case NEW_SPOT:
-            return { ...status, ...action.spot };
+            return { ...status, newSpot: action.newSpot };
         case LOAD_SPOTS:
             return { ...status, ...action.spots };
         case LOAD_SPOT_DETAILS:

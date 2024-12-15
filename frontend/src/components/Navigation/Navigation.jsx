@@ -1,12 +1,19 @@
 // frontend/src/components/Navigation/Navigation.jsx
 
-import { Navigate, NavLink, redirect } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { useEffect, useState } from 'react';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const newSpot = useSelector(state => state.spots.newSpot)
+  const [newSpotId, setSpotId] = useState(null)
+
+  useEffect(() => {
+    if (newSpot) setSpotId(newSpot.id)
+  }, [newSpot])
 
   return (
     <nav>
@@ -18,6 +25,7 @@ function Navigation({ isLoaded }) {
       )}
       {!sessionUser && <Navigate to="/" replace={true} />}
       {sessionUser && <Navigate to="/" replace={true} />}
+      {newSpot && <Navigate to={`/${newSpotId}`} replace={true} />}
     </nav>
   );
 }

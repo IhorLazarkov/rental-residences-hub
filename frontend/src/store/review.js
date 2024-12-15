@@ -31,7 +31,6 @@ export const getCurrentReviews = () => async (dispatch) => {
         .catch(async err => {
             const data = await err.text();
             const { message, errors } = JSON.parse(data)
-            console.log({ message, errors });
             return { ok: err.ok, status: err.status, message, errors };
         })
     const data = await res.json()
@@ -47,7 +46,6 @@ export const updateReview = ({ reviewId, review, stars }) => async (dispatch) =>
     }).catch(async err => {
         const data = await err.text();
         const { message, errors } = JSON.parse(data)
-        console.log({ message, errors });
         return { ok: err.ok, status: err.status, message, errors };
     });
     const currentReviews = await dispatch(getCurrentReviews());
