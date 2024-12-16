@@ -12,4 +12,10 @@ form.review-dialog-container > textarea {
 form.review-dialog-container > div.stars-container {
     margin: 15px 0;
     font-size: 22px ;
+    display: flex;
+    align-content: baseline;
+}
+form.review-dialog-container > div.stars-container > span {
+    margin-left:10px;
+    font-size:18px;
 }

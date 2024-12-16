@@ -19,8 +19,7 @@ export default function ManageReviewsPage() {
     }, [dispatch])
 
     useEffect(() => {
-        if (Reviews)
-            Reviews.length > 0 && setReviews(Reviews)
+        setReviews(Reviews)
     }, [Reviews])
 
     return (
@@ -45,7 +44,7 @@ export default function ManageReviewsPage() {
                                     className="secondary"
                                     buttonText="Update"
                                     modalComponent={<ReviewModalForm
-                                        spotId={spotId}
+                                        action="updateCurrent"
                                         spotName={Spot?.name}
                                         reviewId={reviewId}
                                         reviewMessage={review}
@@ -56,8 +55,8 @@ export default function ManageReviewsPage() {
                                     className="critical"
                                     buttonText="Delete"
                                     modalComponent={<DeleteConfirmatinModal
+                                        action="updateCurrent"
                                         reviewId={reviewId}
-                                        spotId={spotId}
                                         title="Confirm Delete"
                                         message="Are you sure you want to delete this review?"
                                         confirmMessage="Yes (Delete Review)"
@@ -71,4 +70,4 @@ export default function ManageReviewsPage() {
             }
         </div>
     )
-};
+}

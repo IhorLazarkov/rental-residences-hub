@@ -21,7 +21,6 @@ export const createReview = ({ spotId, stars, review }) => async (dispatch) => {
         console.log({ message, errors });
         return { ok: err.ok, status: err.status, message, errors };
     });
-    // const data = await res.json();
     await dispatch(getReviews(spotId));
     return res;
 }
@@ -38,8 +37,8 @@ export const getCurrentReviews = () => async (dispatch) => {
     return res;
 }
 
-export const updateReview = ({ reviewId, review, stars }) => async (dispatch) => {
-    await csrfFetch(`/api/reviews/${reviewId}`, {
+export const updateReview = ({ reviewId, review, stars }) => async () => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reviewId, stars, review })
@@ -48,18 +47,18 @@ export const updateReview = ({ reviewId, review, stars }) => async (dispatch) =>
         const { message, errors } = JSON.parse(data)
         return { ok: err.ok, status: err.status, message, errors };
     });
-    const currentReviews = await dispatch(getCurrentReviews());
-    return currentReviews;
+    return res;
 };
 
 
-export const deleteReview = ({ reviewId, spotId }) => async (dispatch) => {
+export const deleteReview = ({ reviewId }) => async () => {
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "DELETE",
-    }).catch(err => {
-        return err;
+    }).catch(async err => {
+        const data = await err.text();
+        const { message, errors } = JSON.parse(data)
+        return { ok: err.ok, status: err.status, message, errors };
     });
-    await dispatch(getReviews(spotId))
     return res;
 }
 

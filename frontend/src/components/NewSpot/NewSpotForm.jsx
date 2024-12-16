@@ -22,7 +22,6 @@ export default function NewSpot() {
     const [image2, setImage2] = useState('')
     const [image3, setImage3] = useState('')
     const [image4, setImage4] = useState('')
-    const [isEnabled, setEnabled] = useState(false)
 
     //Errors
     const [isSubmitted, setSubmitted] = useState(false)
@@ -31,6 +30,8 @@ export default function NewSpot() {
     //when edit
     const { spotId } = useParams()
     const { spotReviews } = useSelector(state => state.spots)
+
+    const [isEnabled, setEnabled] = useState(spotId ? true : false)
 
     const resetForm = () => {
         setStreet('')
@@ -48,6 +49,10 @@ export default function NewSpot() {
         setImage3('')
         setImage4('')
     }
+
+    useEffect(() => {
+        spotId && dispatch(getSpotDetails(spotId))
+    }, [dispatch])
 
     useEffect(() => {
 
@@ -71,34 +76,36 @@ export default function NewSpot() {
                     if (i === 2) setImage3(url)
                     if (i === 3) setImage4(url)
                 })
+
+            setErrors({});
         }
     }, [spotReviews?.id])
 
     useEffect(() => {
-        //for edit
-        if (spotId) dispatch(getSpotDetails(spotId)).then(() => {
-            //manage enable of button
-            Object.values(errors).length === 0 || spotId ? setEnabled(true) : setEnabled(false)
-        })
-        //validations
-        setErrors({})
-        street === '' && setErrors(prev => prev = { ...prev, street: "Street is required" });
-        city === '' && setErrors(prev => prev = { ...prev, city: "City is required" });
-        country === '' && setErrors(prev => prev = { ...prev, country: "Country is required" });
-        state === '' && setErrors(prev => prev = { ...prev, state: "State is required" });
-        latitude === '' && setErrors(prev => prev = { ...prev, latitude: "required" });
-        longitude === '' && setErrors(prev => prev = { ...prev, longitude: "required" });
-        if (description === '' || description.length < 30) setErrors(prev => prev = { ...prev, description: "Description needs a minimum of 30 characters" });
-        name === '' && setErrors(prev => prev = { ...prev, name: "Name is required" });
-        price === '' && setErrors(prev => prev = { ...prev, price: "Price is required" });
-        previewImg === '' && setErrors(prev => prev = { ...prev, previewImg: "Preview image is required" });
-        if (image1 !== '' && !(
-            image1.indexOf('.png') > -1
-            || image1.indexOf('.jpg') > -1
-            || image1.indexOf('.jpeg') > -1)
-        ) setErrors(prev => prev = { ...prev, image: "Image URL must end in .png, .jpg, or .jpeg" });
-
-    }, [dispatch, street, city, country, state, latitude, longitude, description, name, price, previewImg, image1])
+        const temp = {};
+        if (street === '') temp.street = "Street is required";
+        if (city === '') temp.city = "City is required";
+        if (country === '') temp.country = "Country is required";
+        if (state === '') temp.state = "State is required";
+        if (latitude === '') temp.latitude = "required";
+        if (longitude === '') temp.longitude = "required";
+        if (description === '' || description.length < 30) temp.description = "Description needs a minimum of 30 characters";
+        if (name === '') temp.name = "Name is required";
+        if (price === '') temp.price = "Price is required";
+        // if (previewImg === '') temp.previewImg = "Preview image is required";
+        // if (image1 !== '') {
+        //     if (image1.indexOf('.png') === -1
+        //         && image1.indexOf('.jpg') === -1
+        //         && image1.indexOf('.jpeg') === -1) {
+        //         temp.image = "Image URL must end in .png, .jpg, or .jpeg";
+        //     }
+        // }
+        setErrors(temp);
+        setEnabled(Object.values(errors).length === 0 && name !=='')
+        console.table(temp);
+        console.log('errors length :>> ', Object.values(errors).length);
+        console.log('errors :>> ', errors);
+    }, [street, city, country, state, latitude, longitude, description, name, price, previewImg, image1])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -147,7 +154,7 @@ export default function NewSpot() {
             <form
                 id="new-spot-form-container"
                 onSubmit={onSubmit}>
-                <h2>{spotId ? "Update" : "Create a new"} Spot</h2>
+                <h2>{spotId ? "Update Your" : "Create a new"} Spot</h2>
                 <h3>Where&apos;s your place located?</h3>
                 <p>
                     Guests will only get your exact address once they booked a reservation.

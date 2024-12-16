@@ -20,7 +20,6 @@ export const createSpot = (spot) => async (dispatch) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: previewImg, preview: true })
     })
-    const dataImages = await resPreviewImg.json()
     Array.from(["image1", "image2", "image3", "image4"])
         .map(name => spot[name])
         .filter(url => url !== '')
@@ -31,30 +30,27 @@ export const createSpot = (spot) => async (dispatch) => {
                 body: JSON.stringify({ url, preview: false })
             })
         });
-    dispatch(newSpot({ ...dataNewSpot, ...dataImages }))
-    //return
+    dispatch(newSpot({ id: newSpotId }))
     return { resSpot, resPreviewImg };
 };
 
 export const updateSpot = (updatedSpot) => async (dispatch) => {
-        //Update spot
-        const {spotId} = updatedSpot
-        const resSpot = await csrfFetch(`/api/spots/${spotId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedSpot)
-        })
-        const dataUpdateSpot = await resSpot.json()
-        dispatch(newSpot({ ...dataUpdateSpot}))
-        return { resSpot};
+    const { spotId } = updatedSpot
+    const resSpot = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedSpot)
+    })
+    dispatch(newSpot({ id: spotId }))
+    return { resSpot };
 }
 
 export const deleteSpot = (id) => async (dispatch) => {
     const resDelete = await csrfFetch(`/api/spots/${id}`, { method: "DELETE" })
-    const dataDelete = await resDelete.json()
-    await dispatch(loadCurrentSpots())
-    return dataDelete;
+    dispatch(loadCurrentSpots())
+    return resDelete;
 }
+
 export const getSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
     const data = await res.json();

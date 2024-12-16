@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./ManageSpot.css"
 import { useEffect, useState } from "react";
-import { deleteSpot, loadCurrentSpots } from "../../store/spots";
+import { loadCurrentSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteConfirmatinModal from "../DeleteConfirmationModal/DeleteConfirmatinModal";
 
@@ -30,7 +30,7 @@ export default function ManageSpostPage() {
             {!isLoaded
                 ? <h3>Loading ...</h3>
                 : <>
-                    {Spots.length === 0 && <h2>No spots to show</h2>}
+                    {Spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
                     <ul id="spots-container">
                         {Spots.map(spot => {
                             return <div key={spot.id} className="manage-spot-wrapper">
@@ -48,9 +48,9 @@ export default function ManageSpostPage() {
                                     <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
                                     <OpenModalButton
                                         className='critical'
-                                        spotId={spot.id}
                                         buttonText="Delete"
                                         modalComponent={<DeleteConfirmatinModal
+                                            action="deleteSpot"
                                             spotId={spot.id}
                                             title="Confirm Delete"
                                             message="Are you sure you want to delete this spot?"

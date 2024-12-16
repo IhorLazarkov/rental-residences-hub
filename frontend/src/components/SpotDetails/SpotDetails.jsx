@@ -127,10 +127,13 @@ export default function SpotDetails() {
                     className='primary'
                     style={{ marginBottom: "20px" }}
                     buttonText="Post Your Review"
-                    modalComponent={< ReviewModalForm spotId={spotId} />}
+                    modalComponent={< ReviewModalForm
+                        action="create"
+                        spotId={spotId}
+                    />}
                 >Post Your Review
                 </OpenModalButton>}
-                {(numReviews === 0 && !isOwner) && <div style={{ margin: "10px 0" }}>Be the first to leave a review</div>}
+                {(numReviews === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
                     {reviews.map(({ id: reviewId, User, review, updatedAt, stars }) => {
                         return <>
@@ -141,31 +144,34 @@ export default function SpotDetails() {
                                 stars={stars}
                                 review={review}
                             />
-                            {userId && User.id === userId && <div style={{ marginBottom: "10px" }} className="review-actions-container">
-                                <OpenModalButton
-                                    key={spotId + reviewId}
-                                    className="secondary"
-                                    buttonText="Update"
-                                    modalComponent={<ReviewModalForm
-                                        spotId={spotId}
-                                        reviewId={reviewId}
-                                        reviewMessage={review}
-                                        starsInit={stars} />
-                                    } />
-                                <OpenModalButton
-                                    key={reviewId + spotId}
-                                    className="critical"
-                                    buttonText="Delete"
-                                    modalComponent={<DeleteConfirmatinModal
-                                        reviewId={reviewId}
-                                        spotId={spotId}
-                                        title="Confirm Delete"
-                                        message="Are you sure you want to delete this review?"
-                                        confirmMessage="Yes (Delete Review)"
-                                        abortMessage="No (Keep Review)"
-                                    />}
-                                />
-                            </div>
+                            {userId && User.id === userId &&
+                                <div style={{ marginBottom: "10px" }} className="review-actions-container">
+                                    <OpenModalButton
+                                        key={reviewId + userId + spotId}
+                                        className="secondary"
+                                        buttonText="Update"
+                                        modalComponent={<ReviewModalForm
+                                            action="updateSpotReviews"
+                                            spotId={spotId}
+                                            reviewId={reviewId}
+                                            reviewMessage={review}
+                                            starsInit={stars} />
+                                        } />
+                                    <OpenModalButton
+                                        key={spotId + userId + reviewId + userId}
+                                        className="critical"
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteConfirmatinModal
+                                            action="updateSpotReviews"
+                                            spotId={spotId}
+                                            reviewId={reviewId}
+                                            title="Confirm Delete"
+                                            message="Are you sure you want to delete this review?"
+                                            confirmMessage="Yes (Delete Review)"
+                                            abortMessage="No (Keep Review)"
+                                        />}
+                                    />
+                                </div>
                             }
                         </>
                     })}

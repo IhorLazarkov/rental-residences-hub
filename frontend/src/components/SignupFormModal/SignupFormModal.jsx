@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { useModal } from "../../context/Modal";
 import './SignupForm.css';
 
 export default function SignupFormModal() {
     const dispatch = useDispatch()
-    // const sessionUser = useSelector(state => state.session.user)
+
     const [username, setUserName] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -17,7 +17,6 @@ export default function SignupFormModal() {
     const { closeModal } = useModal()
     const [isEnabled, setEnabled] = useState(false);
     const clSubmitButton = !isEnabled ? "disabled" : "primary"
-    // if (sessionUser) return <Navigate to="/" replace={true} />
 
     const onSubmit = (e) => {
         e.preventDefault();

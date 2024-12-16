@@ -1,29 +1,43 @@
 import { useDispatch } from "react-redux"
 import { useModal } from "../../context/Modal"
-import { deleteReview } from "../../store/review"
+import { deleteReview, getCurrentReviews, getReviews } from "../../store/review"
 import { useState } from "react"
 import "./DeleteConfirmation.css";
 import { deleteSpot } from "../../store/spots";
 
-export default function DeleteConfirmatinModal({ reviewId, spotId, title, message, confirmMessage, abortMessage }) {
+export default function DeleteConfirmatinModal({ action, reviewId, spotId, title, message, confirmMessage, abortMessage }) {
 
     const { closeModal } = useModal()
     const dispatch = useDispatch()
     const [error, setError] = useState('')
 
     const onDelete = () => {
-        if (reviewId && spotId) {
+
+        if (action === 'deleteSpot') {
+            dispatch(deleteSpot(spotId)).then((res) => {
+                if (!res.ok) {
+                    setError(res.statusText)
+                } else {
+                    closeModal()
+                }
+            });
+
+        } else {
             dispatch(deleteReview({ reviewId, spotId }))
                 .then((res) => {
                     if (!res.ok) {
                         setError(res.statusText)
                     } else {
                         closeModal()
+                        switch (action) {
+                            case "updateSpotReviews":
+                                dispatch(getReviews(spotId));
+                                break;
+                            case "updateCurrent":
+                                dispatch(getCurrentReviews());
+                        }
                     }
                 })
-        } else if (!reviewId && spotId) {
-            dispatch(deleteSpot(spotId))
-                .then(closeModal)
         }
     }
 
@@ -36,4 +50,4 @@ export default function DeleteConfirmatinModal({ reviewId, spotId, title, messag
             <button className="secondary" onClick={closeModal}>{abortMessage}</button>
         </div>
     )
-};
+}
