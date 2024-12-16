@@ -574,9 +574,10 @@ router.get('/', queryParametersValidation, async (req, res, next) => {
             include: [
                 {
                     model: SpotImage,
-                    attributes: ['url'],
-                    where: { preview: true },
-                    required: false
+                    attributes: [],
+                    // attributes: ['url'],
+                    // where: { preview: true },
+                    // required: false
                 },
                 {
                     model: Review,
