@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./ManageSpot.css"
 import { useEffect, useState } from "react";
-import { deleteSpot, loadCurrentSpots } from "../../store/spots";
+import { loadCurrentSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
-import { AiOutlineDelete } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteConfirmatinModal from "../DeleteConfirmationModal/DeleteConfirmatinModal";
 
 export default function ManageSpostPage() {
 
@@ -22,36 +22,48 @@ export default function ManageSpostPage() {
         setRedirect(`/spots/${spotId}/edit`);
     }
 
-    const onDelete = (spotId) => {
-        dispatch(deleteSpot(spotId))
-    }
-
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
-    return (<>
-        {!isLoaded
-            ? <h3>Loading ...</h3>
-            : <ul id="spots-container">
-                {Spots.map(spot => {
-                    return <div key={spot.id} className="manage-spot-wrapper">
-                        <SpotCard
-                            key={spot.id}
-                            id={spot.id}
-                            name={spot?.name}
-                            previewImage={spot.SpotImages[0].url}
-                            city={spot?.city}
-                            state={spot?.state}
-                            price={spot?.price}
-                            avgRating={spot?.avgRating}
-                        />
-                        <div className="manage-spot-actions">
-                            <button onClick={() => onUpdate(spot.id)} className="secondary"><FaRegEdit style={{ fontSize: "18px" }} />Update</button>
-                            <button onClick={() => onDelete(spot.id)} className="critical"><AiOutlineDelete style={{ fontSize: "18px" }} />Delete</button>
-                        </div>
-                    </div>
-                })}
-            </ul>
-        }
-    </>
+    return (
+        <div className="manage-spots-container">
+            <h1>Manage Spots</h1>
+            {!isLoaded
+                ? <h3>Loading ...</h3>
+                : <>
+                    {Spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+                    <ul id="spots-container">
+                        {Spots.map(spot => {
+                            return <div key={spot.id} className="manage-spot-wrapper">
+                                <SpotCard
+                                    key={spot.id}
+                                    id={spot.id}
+                                    name={spot?.name}
+                                    previewImage={spot.SpotImages[0].url}
+                                    city={spot?.city}
+                                    state={spot?.state}
+                                    price={spot?.price}
+                                    avgRating={spot?.avgRating}
+                                />
+                                <div className="manage-spot-actions">
+                                    <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
+                                    <OpenModalButton
+                                        className='critical'
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteConfirmatinModal
+                                            action="deleteSpot"
+                                            spotId={spot.id}
+                                            title="Confirm Delete"
+                                            message="Are you sure you want to delete this spot?"
+                                            confirmMessage="Yes (Delete Spot)"
+                                            abortMessage="No (Keep Spot)"
+                                        />}
+                                    />
+                                </div>
+                            </div>
+                        })}
+                    </ul>
+                </>
+            }
+        </div>
     );
 }

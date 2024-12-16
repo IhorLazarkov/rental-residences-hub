@@ -13,49 +13,63 @@ export default function LoginFormModal() {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        setErrors({})
+        setErrors('')
         dispatch(
             sessionActions.login({
                 credential,
                 password
             }))
-            .then(closeModal)
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    if (data?.errors) setErrors(data.errors);
-                }
-            );
+            .then((res) => {
+                if (res.ok)
+                    closeModal()
+                else
+                    setErrors({ message: "The provided credentials were invalid" })
+            });
     };
+
+    const onDemoLogin = (e) => {
+        e.preventDefault();
+        dispatch(
+            sessionActions.login({
+                credential: "Demo-lition",
+                password: "password"
+            })).then(res => {
+                if (res.ok) closeModal();
+            })
+    }
 
     return (
         <>
-            <h1>Log In</h1>
-            <form method="POST">
-                <div>
+            <form
+                id="login-form"
+                onSubmit={onSubmit}>
+                <h2>Log In</h2>
+                {Object.entries(errors).map(([key, message]) => <span className="error" key={key}>{message}</span>)}
+                <section>
                     <label htmlFor="username">Username or Email</label>
-
                     <input
                         type="text"
                         name="username"
                         id="username"
+                        placeholder="Username or Email"
                         onChange={(e) => setCredential(e.target.value)} />
-                </div>
-                <div>
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         name="password"
                         id="password"
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                {errors.credential && <p id="error-container">{errors.credential}</p>}
-                <button
-                    type="submit"
-                    onClick={onSubmit}
-                >
-                    Login
-                </button>
+                    <button
+                        type="submit"
+                        className={credential.length > 4 || password.length > 6
+                            ? "primary"
+                            : "disabled"}
+                    >
+                        Login
+                    </button>
+                </section>
+                <a href="" onClick={onDemoLogin}>Log In as Demo User</a>
             </form>
         </>
     );

@@ -1,0 +1,9 @@
+.confirm-modal-dialog-container{
+    box-sizing: border-box;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}

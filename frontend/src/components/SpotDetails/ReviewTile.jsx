@@ -6,12 +6,12 @@ export default function ReviewTile({ name, review, date, stars }) {
         "August", "Sepember", "Ocober",
         "November", "December"]
     const month = MONTHS[initialDate.getMonth()]
-    const day = initialDate.getDay()
+    const year = initialDate.getFullYear()
 
     return (
         <div className="review-tile">
             <span className="reviewer">{name}</span>
-            <span className="udpatedAt">{month} {day} {stars}.0</span>
+            <span className="udpatedAt">{month} {year} {stars + ".0"}</span>
             <p>{review}</p>
         </div>
     )
