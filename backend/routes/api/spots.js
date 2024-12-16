@@ -380,7 +380,7 @@ router.get('/:spotId/reviews', async (req, res, next) => {
                 { model: User, attributes: ['id', 'firstname', 'lastname'] },
                 { model: ReviewImage, attributes: ['id', 'url'] }
             ],
-            order:[['updatedAt', 'DESC']]
+            order: [['updatedAt', 'DESC']]
         });
 
 
@@ -457,7 +457,7 @@ router.get('/current',
                         [Sequelize.col('SpotImages.preview'), 'previewImage']
                     ]
                 },
-                group: ['Spot.id','SpotImages.preview'],
+                group: ['Spot.id', 'SpotImages.preview'],
             });
 
             return res.json({ Spots: spots })
@@ -586,7 +586,7 @@ router.get('/', queryParametersValidation, async (req, res, next) => {
             //When this line is on then "SQLITE_ERROR: no such column: SpotImages.url"
             // group: ['Spot.id', 'SpotImages.url'],
             group: ['Spot.id'],
-            order: [['id', 'DESC']],
+            // order: [['id', 'DESC']],
             limit: size,
             offset: size * (page - 1),
         });
