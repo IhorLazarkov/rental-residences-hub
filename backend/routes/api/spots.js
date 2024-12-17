@@ -443,11 +443,11 @@ router.get('/current',
                 include: [
                     {
                         model: Review,
-                        attributes: []
+                        // attributes: []
                     },
                     {
                         model: SpotImage,
-                        attributes: [],
+                        // attributes: [],
                         // attributes: ['url'],
                         // where: { preview: true },
                     }
