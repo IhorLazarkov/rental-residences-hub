@@ -38,7 +38,7 @@ export default function ManageSpostPage() {
                                     key={spot.id}
                                     id={spot.id}
                                     name={spot?.name}
-                                    previewImage={spot.SpotImages[0].url}
+                                    previewImage={spot.previewImage}
                                     city={spot?.city}
                                     state={spot?.state}
                                     price={spot?.price}
