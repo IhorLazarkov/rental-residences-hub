@@ -458,7 +458,7 @@ router.get('/current',
                         [Sequelize.col('SpotImages.preview'), 'previewImage']
                     ]
                 },
-                group: ['Spot.id', 'SpotImages.preview', 'Reviews.id'],
+                group: ['Spot.id', 'SpotImages.id', 'Reviews.id'],
             });
 
             return res.json({ Spots: spots })
