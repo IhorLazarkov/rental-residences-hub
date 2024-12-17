@@ -33,7 +33,7 @@ export default function ManageSpostPage() {
                     {Spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
                     <ul id="spots-container">
                         {Spots.map(spot => {
-                            const preview = spot.SpotImages.find(i => i.preview)
+                            const preview = spot.SpotImages.find(i => i.preview) || {url:""}
                             return <div key={spot.id} className="manage-spot-wrapper">
                                 <SpotCard
                                     key={spot.id}
