@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const newSpot = useSelector(state => state.spots.newSpot)
-  const [setSpotId] = useState(null)
+  const [spotId, setSpotId] = useState(null)
 
   useEffect(() => {
     if(newSpot) setSpotId(newSpot.id)
@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
       )}
       {!sessionUser && <Navigate to="/" replace={true} />}
       {sessionUser && <Navigate to="/" replace={true} />}
-      {newSpot && <Navigate to={`/${newSpot.id}`} replace={true} />}
+      {newSpot && <Navigate to={`/${spotId}`} replace={true} />}
     </nav>
   );
 }

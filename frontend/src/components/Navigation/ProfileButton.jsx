@@ -52,10 +52,9 @@ function ProfileButton({ user }) {
         <button
           className="profile"
           onClick={toggleMenu}
-          style={{ color: "inherit", fontSize: "25px" }}
         >
-          <IoIosMenu />
-          <FaUserCircle />
+          <IoIosMenu style={{ fontSize: "20px" }} />
+          <FaUserCircle style={{ fontSize: "33px" }} />
         </button>
       </div>
       <ul className={ulClassName} ref={ulRef}>

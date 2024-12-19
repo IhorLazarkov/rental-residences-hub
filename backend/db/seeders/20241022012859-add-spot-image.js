@@ -46,18 +46,18 @@ module.exports = {
     spots.forEach(async (spot, i) => {
 
       //add preview image
-      const image = await SpotImage.create({
+      await SpotImage.create({
         url: previewUrls[i],
-        preview: true
+        preview: true,
+        spotId: spot.id
       });
-      await spot.addSpotImage(image);
 
       //add not preview images
       imgsUrls.forEach(async url => {
-        const img = await SpotImage.create({
-          url, preview: false
+        await SpotImage.create({
+          url, preview: false,
+          spotId: spot.id
         });
-        await spot.addSpotImage(img);
       })
     })
   },
