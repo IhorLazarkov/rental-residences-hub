@@ -21,7 +21,7 @@ module.exports = {
     const imageStorage = [
       {
         key: 'Appartment',
-        preview: 'https://images1.apartments.com/i2/xmEq714mVJxoobkXUt7dW2M_9Rh_4tEfHs9hBeu9gjQ/112/banner-at-westfield-gallatin-tn-primary-photo.jpg?p=1',
+        preview: 'https://images1.apartments.com/i2/bQdDSRxHzkxNhSco4Jyz-Seu0bavFaF48SdfHCU9tZs/112/statler-mccains-station-gallatin-tn-primary-photo.jpg?p=1',
         urls: [
           "https://images1.apartments.com/i2/R2WTEdcLOxE_U6rTu2dKShINPcNmLwuhYH0ApY95VK8/112/chandler-park-gallatin-gallatin-tn-primary-photo.jpg?p=1",
           'https://images1.apartments.com/i2/yXKVnziVfga2MMhiM0uN7GIOOq_1cCI_tmalC3xKjaA/112/chandler-park-gallatin-gallatin-tn-2br-2ba---1241-sf.jpg?p=1',
