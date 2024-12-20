@@ -1,11 +1,12 @@
-main > ul {
-  margin: 40px 40px;
-  padding: 0 0;
+hr {
+  border-color: rgba(128, 128, 128, 0.3);
 }
-ul#spots-container {
-  list-style: none;
-
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+#spots-container {
   display: flex;
-  flex-wrap: wrap;
   gap: 25px;
+  flex-wrap: wrap;
 }

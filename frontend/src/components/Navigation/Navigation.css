@@ -1,8 +1,9 @@
 nav {
   height: 80px;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-
+  width: 80%;
+  margin: 0 auto;
   padding: 0 40px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
