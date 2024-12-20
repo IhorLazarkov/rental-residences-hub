@@ -17,24 +17,27 @@ export default function LandingPage() {
     }, [dispatch]);
 
     return (
-        <main>
-            {isLoading
-                ? <h1>Welcome! Loading ...</h1>
-                : <ul id="spots-container">
-                    {Spots.map(spot => {
-                        return <SpotCard
-                            key={spot.id}
-                            id={spot.id}
-                            name={spot?.name}
-                            previewImage={spot?.previewImage}
-                            city={spot?.city}
-                            state={spot?.state}
-                            price={spot?.price}
-                            avgRating={spot?.avgRating}
-                        />
-                    })}
-                </ul>
-            }
-        </main>
+        <>
+            <hr />
+            <main>
+                {isLoading
+                    ? <h1>Welcome! Loading ...</h1>
+                    : <div id="spots-container">
+                        {Spots.map(spot => {
+                            return <SpotCard
+                                key={spot.id}
+                                id={spot.id}
+                                name={spot?.name}
+                                previewImage={spot?.previewImage}
+                                city={spot?.city}
+                                state={spot?.state}
+                                price={spot?.price}
+                                avgRating={spot?.avgRating}
+                            />
+                        })}
+                    </div>
+                }
+            </main>
+        </>
     );
 }

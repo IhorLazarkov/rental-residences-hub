@@ -20,31 +20,50 @@ module.exports = {
      * }], {});
     */
 
-    //Get all spots with User
-    const spots = await Spot.findAll({
-      include: [{ model: User, required: true }]
-    });
-
     //Define reviews
-    const reviews = [
+    const store = [
       {
+        type: "Appartment",
         review: "This is wanderful appatment. I'll return here next time.",
         stars: 5,
       },
       {
-        review: "Not bad but I've seen better.",
-        stars: 3,
+        type: "Appartment",
+        review: "I really liked this appartment because of its close location to downtown. But, unfortunately, it was a bit loud and we couldn't sleep.",
+        stars: 4
+      },
+      {
+        type: "House",
+        review: "We had great time even thought it was autom.",
+        stars: 5,
+      },
+      {
+        type: "House",
+        review: "During our stay there was a brokage of water pipe. But, other then that all's good.",
+        stars: 3
       }
     ];
 
-    //Creare reviews for each spot
-    spots.forEach(async spot => {
-      reviews.map(async review => {
-        review.spotId = spot.id;
-        review.userId = spot.User.id;
-        return await Review.create(review)
-      });
-    });
+    const users = await User.findAll({ where: { username: "FakeUser1" } })
+
+    Array.from(["Appartment", "House"]).forEach(async type => {
+
+      const reviews = store.filter(review => review.type === type);
+
+      const spots = await Spot.findAll({ where: { name: type } });
+
+      for (let i = 0; i < spots.length; i++) {
+        const { id: spotId } = spots[i];
+        reviews.forEach(async ({ review, stars }) => {
+          await Review.create({
+            userId: users[0].id,
+            spotId,
+            review,
+            stars
+          })
+        })
+      }
+    })
   },
 
   async down(queryInterface, Sequelize) {

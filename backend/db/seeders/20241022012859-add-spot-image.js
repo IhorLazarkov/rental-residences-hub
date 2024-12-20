@@ -18,48 +18,57 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    const previewUrls = [
-      "https://www.apartments.com/blog/sites/default/files/styles/x_large/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg.webp?itok=lYDRCGzC",
-      "https://images1.apartments.com/i2/o40ZE1DtHwHeKi88KPX0aCuumyFDoVBtYXrx-WWKJh4/116/icon-apartment-homes-at-hardin-valley-knoxville-tn-building-photo.jpg?p=1",
-      "https://a0.muscache.com/im/pictures/73af5749-a5fa-423c-be54-78496a77c06a.jpg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-48913506/original/a84b972e-0c31-47ac-a6f5-c1d9b71d23ed.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1126836657626403052/original/8c03b8cc-d0f8-42cd-87ae-11fc76d284cb.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-1015173105201898287/original/35fbdbfb-60a4-45ca-bc42-e495e5ca840c.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/05ba13eb-12fb-40e6-bc79-4e572c6d5a51.jpg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1189105910526538058/original/85f13efc-b828-4d22-9553-504986f24c2b.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-727079965119171863/original/ea1e07fb-a9d3-4b84-b89e-c647259444e8.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-727079965119171863/original/4d760ef5-5252-4c9e-a9be-b8214b8c950e.jpeg?im_w=1200&im_format=avif",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-36767861/original/ffcc6215-0b1c-4e8c-b2e0-473b3c801014.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-49790674/original/56120f44-ec84-4925-af4a-184747e9b843.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1117311629040608738/original/e2370d6c-044a-403c-b187-7ff0f0c63557.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/hosting/Hosting-1047947025661441388/original/754b5876-3a32-404e-a134-83fc91497071.jpeg?im_w=960&im_format=avif",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-49315894/original/4f523913-3270-44a0-9de8-698ba8c5cc1b.jpeg?im_w=720&im_format=avif",
-      "https://a0.muscache.com/im/pictures/miso/Hosting-677422480583514492/original/f97adcf5-2742-4c96-98a9-4987ca4ec20c.jpeg?im_w=720&im_format=avif",
-    ]
-    const imgsUrls = [
-      'https://images1.apartments.com/i2/KwFNdvxUUwvgF-1_5wNErZg4q4skPRJB-w4UC9GY6JQ/116/reserve-at-drakes-creek-hendersonville-tn-kitchen-with-hardwood-style-flooring-mod.jpg?p=1',
-      "https://images1.apartments.com/i2/-NHSXcFaXKQR5ZAxrVkP2-jI9SC0GmKuUlo3ZVjB7sA/116/reserve-at-drakes-creek-hendersonville-tn-2br-15ba---950sf---living-room.jpg?p=1",
-      'https://images1.apartments.com/i2/fx7C4CQwVWb4pamAYLU7UPOvz7-pv5YHZeuS6V5A_LA/116/reserve-at-drakes-creek-hendersonville-tn-spacious-living-room-with-hardwood-style.jpg?p=1',
-      'https://images1.apartments.com/i2/qsAg5JCpseJQoBqLoVrKfu4f0R3xFZ51QGCaIz92KZw/116/reserve-at-drakes-creek-hendersonville-tn-2br-15ba---950sf---living-room.jpg?p=1',
-    ]
-    const spots = await Spot.findAll();
-    spots.forEach(async (spot, i) => {
+    const imageStorage = [
+      {
+        key: 'Appartment',
+        preview: 'https://images1.apartments.com/i2/bQdDSRxHzkxNhSco4Jyz-Seu0bavFaF48SdfHCU9tZs/112/statler-mccains-station-gallatin-tn-primary-photo.jpg?p=1',
+        urls: [
+          "https://images1.apartments.com/i2/R2WTEdcLOxE_U6rTu2dKShINPcNmLwuhYH0ApY95VK8/112/chandler-park-gallatin-gallatin-tn-primary-photo.jpg?p=1",
+          'https://images1.apartments.com/i2/yXKVnziVfga2MMhiM0uN7GIOOq_1cCI_tmalC3xKjaA/112/chandler-park-gallatin-gallatin-tn-2br-2ba---1241-sf.jpg?p=1',
+          'https://images1.apartments.com/i2/ScXQWm5-3wPhBgam3fm13othSDagdzhrSc7pI_RWY0E/112/chandler-park-gallatin-gallatin-tn-2br-2ba---1241-sf.jpg?p=1',
+          'https://images1.apartments.com/i2/UYo4ETXO4UQ0cpdB1n2sT_L-FTtijxKjx-GZC2YS6EY/112/chandler-park-gallatin-gallatin-tn-2br-2ba---1241-sf.jpg?p=1'
+        ]
+      },
+      {
+        key: 'Appartment',
+        preview: 'https://images1.apartments.com/i2/xmEq714mVJxoobkXUt7dW2M_9Rh_4tEfHs9hBeu9gjQ/112/banner-at-westfield-gallatin-tn-primary-photo.jpg?p=1',
+        urls: [
+          'https://images1.apartments.com/i2/Vm-ecgQQpYgdWO-sxW9buxe60ifR4EVUlKdhEK8ypBg/112/banner-at-westfield-gallatin-tn-building-photo.jpg?p=1',
+          'https://images1.apartments.com/i2/Cg88IA64A5dL5IMk-EF4HTjpxaFiUP0RKiWK_2gpwgM/112/banner-at-westfield-gallatin-tn-building-photo.jpg?p=1',
+          'https://images1.apartments.com/i2/_bp1oMb1FLiGp4X1-dkVDwMfmOtGIL5N6MPFDreRZeI/112/banner-at-westfield-gallatin-tn-building-photo.jpg?p=1',
+          'https://images1.apartments.com/i2/wAehYwY7s-AFuf7iAEWEA_ARkulW3kQBr7J0aWYRsac/112/banner-at-westfield-gallatin-tn-building-photo.jpg?p=1'
+        ]
+      },
+      {
+        key: "House",
+        preview: 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/73af5749-a5fa-423c-be54-78496a77c06a.jpg?im_w=960&im_format=avif',
+        urls: [
+          'https://a0.muscache.com/im/pictures/0218acef-d0c9-44f6-a625-710f45cbc972.jpg?im_w=480&im_format=avif',
+          'https://a0.muscache.com/im/ml/photo_enhancement/pictures/d3f3db82-066c-4875-aac5-ec08557f84f1.jpg?im_w=480&im_format=avif',
+          'https://a0.muscache.com/im/pictures/4c98945e-63c3-46b7-ae64-eb20f665bb23.jpg?im_w=320&im_format=avif',
+          'https://a0.muscache.com/im/pictures/285abf2e-2f48-4164-bda6-dfe3e2564a8b.jpg?im_w=320&im_format=avif'
+        ]
+      }];
 
-      //add preview image
-      const image = await SpotImage.create({
-        url: previewUrls[i],
-        preview: true
-      });
-      await spot.addSpotImage(image);
+    Array.from(["Appartment", "House"]).forEach(async type => {
 
-      //add not preview images
-      imgsUrls.forEach(async url => {
-        const img = await SpotImage.create({
-          url, preview: false
-        });
-        await spot.addSpotImage(img);
-      })
-    })
+      const images = imageStorage.filter(store => store.key === type)
+
+      const spots = await Spot.findAll({ where: { name: type } });
+
+      for (let i = 0; i < spots.length; i++) {
+        //exit when there are no images
+        if (i >= images.length) break;
+        //create preivew image
+        const { id: spotId } = spots[i];
+        const { preview: url, urls } = images[i];
+        await SpotImage.create({ preview: true, url, spotId });
+        //create other images
+        urls.forEach(async url => {
+          await SpotImage.create({ spotId, preview: false, url });
+        })
+      }
+    });
   },
 
   async down(queryInterface, Sequelize) {

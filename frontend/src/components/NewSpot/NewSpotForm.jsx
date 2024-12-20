@@ -102,9 +102,6 @@ export default function NewSpot() {
         // }
         setErrors(temp);
         setEnabled(Object.values(errors).length === 0 && name !=='')
-        console.table(temp);
-        console.log('errors length :>> ', Object.values(errors).length);
-        console.log('errors :>> ', errors);
     }, [street, city, country, state, latitude, longitude, description, name, price, previewImg, image1])
 
     const onSubmit = (e) => {
