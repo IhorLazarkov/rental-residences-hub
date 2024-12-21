@@ -70,7 +70,7 @@ button {
   cursor: pointer;
 }
 button.primary {
-  background: rgb(69, 69, 246);
+  background: rgb(0, 92, 230);
   color: white;
   border-radius: 5px;
   border: 1px solid lightgrey ;
@@ -78,10 +78,10 @@ button.primary {
   font-size: medium;
 }
 button.secondary {
-  color: rgb(69, 69, 246);
+  color: rgb(0, 92, 230);
   background-color: white;
   border-radius: 5px;
-  border: 1px solid rgb(69, 69, 246);
+  border: 1px solid rgb(0, 92, 230);
   height: 40px;
   font-size: medium;
 }

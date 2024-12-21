@@ -45,8 +45,8 @@
 
 .spot-card:hover {
   .spot-card-info {
-    color: rgb(69, 69, 246);
-    border-color: rgb(69, 69, 246);
+    color: rgb(0, 92, 230);
+    border-color: rgb(0, 92, 230);
   }
 }
 
