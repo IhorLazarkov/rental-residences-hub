@@ -2,6 +2,11 @@
 
 const { User, Spot, Booking } = require('../models')
 
+const options = { tableName: "Spots" };
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -43,12 +48,10 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    const user = await User.findOne({
-      attributes: ['id'],
-      where: { username: "Fakeuser1" }
-    });
-    await Booking.destroy({
-      where: { userId: user.id }
-    })
+    // const user = await User.findOne({
+    //   attributes: ['id'],
+    //   where: { username: "Fakeuser1" }
+    // });
+    await queryInterface.bulkDelete(options, null, {});
   }
 };
