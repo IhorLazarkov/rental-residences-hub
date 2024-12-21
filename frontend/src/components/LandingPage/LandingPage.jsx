@@ -19,26 +19,24 @@ export default function LandingPage() {
     return (
         <>
             <hr />
-            <main>
-                {isLoading
-                    ? <h1>Welcome! Loading ...</h1>
-                    : <div id="spots-container">
-                        {Spots.length === 0 && <h3>No spots found</h3>}
-                        {Spots.map(spot => {
-                            return <SpotCard
-                                key={spot.id}
-                                id={spot.id}
-                                name={spot?.name}
-                                previewImage={spot?.previewImage}
-                                city={spot?.city}
-                                state={spot?.state}
-                                price={spot?.price}
-                                avgRating={spot?.avgRating}
-                            />
-                        })}
-                    </div>
-                }
-            </main>
+            {isLoading
+                ? <h1>Welcome! Loading ...</h1>
+                : <main id="spots-container">
+                    {Spots.length === 0 && <h3>No spots found</h3>}
+                    {Spots.map(spot => {
+                        return <SpotCard
+                            key={spot.id}
+                            id={spot.id}
+                            name={spot?.name}
+                            previewImage={spot?.previewImage}
+                            city={spot?.city}
+                            state={spot?.state}
+                            price={spot?.price}
+                            avgRating={spot?.avgRating}
+                        />
+                    })}
+                </main>
+            }
         </>
     );
 }
