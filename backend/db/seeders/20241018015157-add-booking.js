@@ -48,10 +48,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    // const user = await User.findOne({
-    //   attributes: ['id'],
-    //   where: { username: "Fakeuser1" }
-    // });
     await queryInterface.bulkDelete(options, null, {});
   }
 };
