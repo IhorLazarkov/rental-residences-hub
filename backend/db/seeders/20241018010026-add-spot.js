@@ -52,14 +52,38 @@ module.exports = {
       description: "Comfortable 1br appertments in downtown",
       price: 250.00,
     },
+    {
+      address: "2975 Arabian Nights Boulevard",
+      city: "Orlando",
+      state: "FL",
+      country: "US",
+      lat: 10.01,
+      lng: 23.1,
+      name: "Resort",
+      description: "Located within 4 mi of the Walt Disney World Resort, this Orlando resort features 7 heated outdoor pools and 6 hot tubs. Suites have a fully equipped kitchen or kitchenette. Aquatica, SeaWorld’s water park, is 9.9 mi away.",
+      price: 150.00,
+    },
+    {
+      address: "8738 International Drive, Orlando",
+      city: "Orlando",
+      state: "FL",
+      country: "US",
+      lat: 10.01,
+      lng: 23.1,
+      name: "Resort",
+      description: "Located in Orlando, Florida, the Avanti Resort features an outdoor swimming pool, a poolside bar and grill, and a barista. Complimentary property-wide WiFi is included. The Orlando Eye is a 9 minutes' walk from the hotel. The Orange County Convention Center is 1.1 mi away. A refrigerator and coffee machine come standard in each room at the Avanti Resort. A private bathroom and flat-screen cable TV are also offered. Select rooms include a microwave, as well.",
+      price: 150.00,
+    },
     ];
-    const user = await User.findOne({
-      where: { username: "Demo-lition" }
-    });
-    spots.map(async spot => {
-      const newSpot = await Spot.create(spot);
+    const users = await User.findAll();
+    for (let i = 0, j = 0; i < spots.length; i++, j++) {
+      if (j >= users.length) j = 0
+      const spot = spots[i]
+      const user = users[j]
+
+      const newSpot = await Spot.create(spot)
       await user.addSpot(newSpot)
-    })
+    }
   },
 
   async down(queryInterface, Sequelize) {

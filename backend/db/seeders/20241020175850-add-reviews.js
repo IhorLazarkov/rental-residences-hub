@@ -1,6 +1,6 @@
 'use strict';
 
-const { User, Spot, Review } = require('../models')
+const { User, Spot, Review} = require('../models')
 
 const options = { tableName: "Reviews" };
 if (process.env.NODE_ENV === 'production') {
@@ -41,27 +41,46 @@ module.exports = {
         type: "House",
         review: "During our stay there was a brokage of water pipe. But, other then that all's good.",
         stars: 3
+      },
+      {
+        type: "Resort",
+        review: "We had great time. It was clean.",
+        stars: 5,
+      },
+      {
+        type: "Resort",
+        review: "During our stay there was alot of sand. Our robot vaccum helped us alot. But, other then that all's good.",
+        stars: 4
       }
     ];
 
-    const users = await User.findAll({ where: { username: "FakeUser1" } })
-
-    Array.from(["Appartment", "House"]).forEach(async type => {
-
-      const reviews = store.filter(review => review.type === type);
+    Array.from(["Appartment", "House", "Resort"]).forEach(async type => {
 
       const spots = await Spot.findAll({ where: { name: type } });
 
       for (let i = 0; i < spots.length; i++) {
-        const { id: spotId } = spots[i];
-        reviews.forEach(async ({ review, stars }) => {
-          await Review.create({
-            userId: users[0].id,
-            spotId,
-            review,
-            stars
-          })
+
+        const { id: spotId, ownerId } = spots[i]
+
+        //find user who is not an owner of the spot
+        const { id: userId } = await User.findOne({
+          where: {
+            id: {
+              [Sequelize.Op.ne]: ownerId
+            }
+          }
         })
+
+        store
+          .filter(review => review.type === type)
+          .forEach(async ({ review, stars }) => {
+            await Review.create({
+              userId,
+              spotId,
+              review,
+              stars
+            })
+          })
       }
     })
   },
