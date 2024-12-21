@@ -71,7 +71,7 @@ module.exports = {
       lat: 10.01,
       lng: 23.1,
       name: "Resort",
-      description: "Located in Orlando, Florida, the Avanti Resort features an outdoor swimming pool, a poolside bar and grill, and a barista. Complimentary property-wide WiFi is included. The Orlando Eye is a 9 minutes' walk from the hotel. The Orange County Convention Center is 1.1 mi away. A refrigerator and coffee machine come standard in each room at the Avanti Resort. A private bathroom and flat-screen cable TV are also offered. Select rooms include a microwave, as well.",
+      description: "Located in Orlando, Florida, the Avanti Resort features an outdoor swimming pool, a poolside bar and grill, and a barista.",
       price: 150.00,
     },
     ];
