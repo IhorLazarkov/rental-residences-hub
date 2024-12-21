@@ -17,11 +17,10 @@ export default function LandingPage() {
     }, [dispatch]);
 
     return (
-        <>
-            <hr />
+        <main id="spots-container">
             {isLoading
                 ? <h1>Welcome! Loading ...</h1>
-                : <main id="spots-container">
+                : <>
                     {Spots.length === 0 && <h3>No spots found</h3>}
                     {Spots.map(spot => {
                         return <SpotCard
@@ -35,8 +34,8 @@ export default function LandingPage() {
                             avgRating={spot?.avgRating}
                         />
                     })}
-                </main>
+                </>
             }
-        </>
+        </main>
     );
 }

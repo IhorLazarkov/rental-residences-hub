@@ -1,16 +1,14 @@
-
-/* .manage-spots-container{ */
-  /* width: 90%; */
-  /* margin: auto; */
-/* } */
-/*
+/* .manage-spots-container{
+  width: 90%;
+  margin: auto;
+} */
 .manage-spot-actions {
   display: flex;
   width: 100%;
   justify-content: start;
-  gap:10px;
+  gap: 10px;
 }
-
+/*
 .manage-spot-actions button {
   margin-top: 20px;
   width: 100px;

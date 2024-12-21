@@ -1,7 +1,3 @@
-.manage-reviews-container{
-    width: 90%;
-    margin: auto;
-}
 .review-actions-container{
     display: flex;
     gap: 10px;

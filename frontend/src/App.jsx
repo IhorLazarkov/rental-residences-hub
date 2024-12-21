@@ -23,6 +23,7 @@ function Layout() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <hr />
       {isLoaded && <Outlet />}
     </>
   );

@@ -25,11 +25,11 @@ export default function ManageSpostPage() {
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
     return (
-        <>
-            <hr />
+
+        <main id="spots-container">
             {!isLoaded
                 ? <h3>Loading ...</h3>
-                : <main id="spots-container">
+                : <>
                     {Spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
                     {Spots.map(spot => {
 
@@ -40,12 +40,12 @@ export default function ManageSpostPage() {
                             <SpotCard
                                 key={spot.id}
                                 id={spot.id}
-                                name={spot?.name}
+                                name={spot.name}
                                 previewImage={preview.url}
-                                city={spot?.city}
-                                state={spot?.state}
-                                price={spot?.price}
-                                avgRating={spot?.avgRating}
+                                city={spot.city}
+                                state={spot.state}
+                                price={spot.price}
+                                avgRating={spot.avgRating}
                             />
 
                             <div className="manage-spot-actions">
@@ -65,8 +65,8 @@ export default function ManageSpostPage() {
                             </div>
                         </div>
                     })}
-                </main>
+                </>
             }
-        </>
+        </main>
     );
 }

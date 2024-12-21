@@ -23,14 +23,13 @@ export default function ManageReviewsPage() {
     }, [Reviews])
 
     return (
-        <div className="manage-reviews-container">
-            <h1>Manage Reviews</h1>
+        <main className="manage-reviews-container">
             {!isLoaded
                 ? <h2>Loading ...</h2>
                 : <>
                     {currentReviews.length === 0 && <h2>No Reviews</h2>}
                     {currentReviews.map(({ id: reviewId, spotId, Spot, review, updatedAt, stars }) => {
-                        return <>
+                        return <div key={reviewId}>
                             <h3>{Spot?.name}</h3>
                             <ReviewTile
                                 key={reviewId}
@@ -64,10 +63,10 @@ export default function ManageReviewsPage() {
                                     />}
                                 />
                             </div>
-                        </>
+                        </div>
                     })}
                 </>
             }
-        </div>
+        </main>
     )
 }
