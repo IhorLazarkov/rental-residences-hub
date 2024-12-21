@@ -23,6 +23,7 @@ export default function LandingPage() {
                 {isLoading
                     ? <h1>Welcome! Loading ...</h1>
                     : <div id="spots-container">
+                        {Spots.length === 0 && <h3>No spots found</h3>}
                         {Spots.map(spot => {
                             return <SpotCard
                                 key={spot.id}

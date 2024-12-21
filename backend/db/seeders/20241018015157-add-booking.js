@@ -17,7 +17,7 @@ module.exports = {
 
     const user = await User.findOne({
       where: {
-        username: "FakeUser1"
+        username: "Fakeuser1"
       }
     });
     const spot = await Spot.findOne({
@@ -45,7 +45,7 @@ module.exports = {
      */
     const user = await User.findOne({
       attributes: ['id'],
-      where: { username: "FakeUser1" }
+      where: { username: "Fakeuser1" }
     });
     await Booking.destroy({
       where: { userId: user.id }

@@ -48,9 +48,30 @@ module.exports = {
           'https://a0.muscache.com/im/pictures/4c98945e-63c3-46b7-ae64-eb20f665bb23.jpg?im_w=320&im_format=avif',
           'https://a0.muscache.com/im/pictures/285abf2e-2f48-4164-bda6-dfe3e2564a8b.jpg?im_w=320&im_format=avif'
         ]
-      }];
+      },
+      {
+        key: "Resort",
+        preview: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/150069558.jpg?k=db2886047e6dfb65e62ad97d804ab8cb4394e88915ce8bd618e7ab61a4d92253&o=',
+        urls: [
+          'https://cf.bstatic.com/xdata/images/hotel/max500/162015939.jpg?k=51a5ab3d80a151b18e476d2971f75bf48eee1c9b556e5457bb1c04bb53664fbd&o=',
+          'https://cf.bstatic.com/xdata/images/hotel/max500/162015645.jpg?k=d9658627dcbc50b8e814f4280d7614e96e857ca0cc84b2b3fa42bf3f142d1be4&o=',
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/492313268.jpg?k=28fc5561cb307eddb91ccb69f9885aa0376e17e9ec2c11e1ece63d254c307d3c&o=&hp=1',
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/130428633.jpg?k=77358d5524cf12dfb53cfbdd9a7aafa1310cf84ba13a1a45a757fefeda8aeb25&o=&hp=1'
+        ]
+      },
+      {
+        key: "Resort",
+        preview: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/450459083.jpg?k=fae713466385b3383c39600b205e7d4bf061a54ba827661b7d8800aa25bb178e&o=&hp=1',
+        urls: [
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/530808130.jpg?k=1cdcb579b9f8f0bc4e1f5b8a2f0763ed74e5b930538c4f8f45bd140da7132b7c&o=&hp=1',
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/518056960.jpg?k=cbe6df8ad2a3328d6d38df99a984742c2f4f08c9f341b01d4a212e34203513ca&o=&hp=1',
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/430975220.jpg?k=1c13d9b1a8d33c03b5a72356a141d9bcc129a9494998cc511a376ab4ffd9e552&o=&hp=1',
+          'https://cf.bstatic.com/xdata/images/hotel/max1024x768/527104661.jpg?k=24b015ccd9dcdceda04862e9b21792cc11b0c1b4f4472d8e82ab2117af4ef0d8&o=&hp=1'
+        ]
+      },
+    ];
 
-    Array.from(["Appartment", "House"]).forEach(async type => {
+    Array.from(["Appartment", "House", "Resort"]).forEach(async type => {
 
       const images = imageStorage.filter(store => store.key === type)
 
