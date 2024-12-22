@@ -17,32 +17,6 @@
   justify-content: space-between;
 }
 
-@media screen and (width >= 1370px) {
-  .spot-card {
-    max-width: 550px;
-    flex: 0 1 30%;
-  }
-}
-
-@media screen and (width < 1369px) {
-  .spot-card {
-    flex: 0 1 30%;
-  }
-}
-
-@media screen and (width <= 1000px) {
-  .spot-card {
-    flex: 0 1 40%;
-  }
-}
-
-@media screen and (width <= 700px) {
-  .spot-card {
-    max-width: 100%;
-    flex: 1 0 100%;
-  }
-}
-
 .spot-card:hover {
   .spot-card-info {
     color: rgb(0, 92, 230);
