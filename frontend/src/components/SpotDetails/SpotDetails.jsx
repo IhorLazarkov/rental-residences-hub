@@ -88,9 +88,11 @@ export default function SpotDetails() {
             </div>
             <div className='spot-details-body'>
                 <div className='photos-container'>
-                    <img className="preview"
-                        src={previewImage?.url}
-                        alt="preview image" />
+                    <div className="preview">
+                        <img
+                            src={previewImage?.url}
+                            alt="preview image" />
+                    </div>
                     <div className='images'>
                         {images.map(({ id, url }) => {
                             return <img

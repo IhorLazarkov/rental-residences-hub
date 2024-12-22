@@ -25,7 +25,6 @@ export default function ManageSpostPage() {
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
     return (
-
         <main id="spots-container">
             {!isLoaded
                 ? <h3>Loading ...</h3>
