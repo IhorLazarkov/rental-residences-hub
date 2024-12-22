@@ -28,7 +28,7 @@ nav {
 }
 @media screen and (width < 700px) {
   nav{
-    width: 70%;
+    width: 90%;
   }
   #logo{
     font-size: 1.1em;
