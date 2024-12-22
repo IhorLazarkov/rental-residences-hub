@@ -1,8 +1,8 @@
 nav {
   height: 80px;
-  width: 80%;
+
   margin: 0 auto;
-  padding: 0 40px;
+  /* padding: 0 40px; */
 
   display: flex;
   justify-content: space-between;
@@ -13,8 +13,28 @@ nav {
 #logo {
   color: rgb(0, 92, 230);
   text-decoration: none;
-  font-size: 1.5em;
   font-weight: 500;
+  display: flex;
+}
+
+@media screen and (width >= 701px) {
+  nav{
+    width: 80%;
+  }
+  #logo{
+    font-size: 1.5em;
+    gap: 5px;
+  }
+}
+@media screen and (width < 700px) {
+  nav{
+    width: 70%;
+  }
+  #logo{
+    font-size: 1.1em;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 nav .profile-dropdown {

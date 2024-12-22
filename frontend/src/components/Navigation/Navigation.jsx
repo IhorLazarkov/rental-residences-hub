@@ -12,12 +12,16 @@ function Navigation({ isLoaded }) {
   const [spotId, setSpotId] = useState(null)
 
   useEffect(() => {
-    if(newSpot) setSpotId(newSpot.id)
+    if (newSpot) setSpotId(newSpot.id)
   }, [newSpot])
 
   return (
     <nav>
-      <NavLink id="logo" to="/">rental residence hub</NavLink>
+      <NavLink id="logo" to="/">
+        <span>rental</span>
+        <span>residence</span>
+        <span>hub</span>
+      </NavLink>
       {isLoaded && (
         <div style={{ position: "relative", minWidth: "150px" }}>
           <ProfileButton user={sessionUser} />

@@ -2,9 +2,20 @@ hr {
   border-color: rgba(128, 128, 128, 0.3);
 }
 main {
-  width: 80%;
   margin: 0 auto;
 }
+@media screen and (width >= 701px) {
+  main{
+    width: 80%;
+  }
+}
+@media screen and (width < 700px) {
+  main{
+    width: 70%;
+    padding: 0 10px;
+  }
+}
+
 #spots-container {
   display: flex;
   gap: 25px;
