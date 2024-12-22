@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div className='nav-button-container'>
+      <div id='nav-button-container'>
         {user && <NavLink to="/spots/new">Create a New Spot</NavLink>}
         <button
           className="profile"
@@ -55,6 +55,14 @@ function ProfileButton({ user }) {
         >
           <IoIosMenu style={{ fontSize: "20px" }} />
           <FaUserCircle style={{ fontSize: "33px" }} />
+        </button>
+      </div>
+      <div id='nav-button-container-mobile'>
+        <button
+          className="profile"
+          onClick={toggleMenu}
+        >
+          <IoIosMenu />
         </button>
       </div>
       <ul className={ulClassName} ref={ulRef}>

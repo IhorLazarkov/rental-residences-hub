@@ -50,12 +50,6 @@ nav .hidden {
   display: none;
 }
 
-nav div.nav-button-container {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 10px;
-}
 nav a {
   text-decoration: none;
   color: inherit;

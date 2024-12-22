@@ -11,6 +11,19 @@
     width: 70%;
     padding: 0 10px;
   }
+  #nav-button-container {
+    display: none;
+  }
+  #nav-button-container-mobile {
+    align-self: self-end;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  #nav-button-container-mobile > button{
+    font-size: 35px;
+    border: 0;
+  }
 }
 
 @media screen and (width <= 700px) {

@@ -9,6 +9,15 @@
   main {
     width: 80%;
   }
+  #nav-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+  }
+  #nav-button-container-mobile {
+    display: none;
+  }
 }
 
 @media screen and (width > 1581px) {
