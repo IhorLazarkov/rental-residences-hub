@@ -94,3 +94,16 @@
     flex: 0 1 30%;
   }
 }
+
+@media screen and (1580px >= width > 701px) {
+  .spot-card-for-review {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .spot-card-for-review img {
+    max-width: 350px;
+    border-radius: 10px;
+  }
+}

@@ -1,3 +1,3 @@
-import Spot from "./Spot";
+import SpotCard from "./SpotCard";
 
-export default Spot;
+export default SpotCard;

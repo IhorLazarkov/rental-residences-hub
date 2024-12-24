@@ -82,3 +82,21 @@
     flex: 1 0 100%;
   }
 }
+@media screen and (width <= 700px) {
+  .spot-card-for-review {
+    width: 80%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+
+    .review-actions-container{
+      margin: 10px 20px;
+      justify-content: space-between;
+    }
+  }
+
+  .spot-card-for-review img {
+    max-width: 300px;
+    border-radius: 10px;
+  }
+}
