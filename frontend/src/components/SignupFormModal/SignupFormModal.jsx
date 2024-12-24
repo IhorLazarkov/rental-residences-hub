@@ -55,7 +55,7 @@ export default function SignupFormModal() {
                     className="error"
                 >{message}</span>
             })}
-            <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} placeholder="First Name" />
+            <input type="text" onChange={(e) => setFirstName(e.target.value)} value={firstName} placeholder="First Name" autoFocus='true'/>
             <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastName} placeholder="Last Name" />
             <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} placeholder="Email" />
             <input type="text" onChange={(e) => setUserName(e.target.value)} value={username} placeholder="Username" />

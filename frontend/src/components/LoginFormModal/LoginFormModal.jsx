@@ -48,6 +48,7 @@ export default function LoginFormModal() {
                 <section>
                     <label htmlFor="username">Username or Email</label>
                     <input
+                        autoFocus='true'
                         type="text"
                         name="username"
                         id="username"
