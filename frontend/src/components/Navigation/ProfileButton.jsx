@@ -47,27 +47,27 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div id='nav-button-container'>
-        {user && <NavLink to="/spots/new">Create a New Spot</NavLink>}
-        <button
-          className="profile"
-          onClick={toggleMenu}
-        >
-          <IoIosMenu style={{ fontSize: "20px" }} />
-          <FaUserCircle style={{ fontSize: "33px" }} />
-        </button>
-      </div>
-      <div id='nav-button-container-mobile'>
-        <button
-          className="profile"
-          onClick={toggleMenu}
-        >
-          <IoIosMenu />
-        </button>
-      </div>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
+      {user ? (
+        <>
+          <div id='nav-button-container'>
+            {user && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+            <button
+              className="profile"
+              onClick={toggleMenu}
+            >
+              <IoIosMenu style={{ fontSize: "20px" }} />
+              <FaUserCircle style={{ fontSize: "33px" }} />
+            </button>
+          </div>
+          <div id='nav-button-container-mobile'>
+            <button
+              className="profile"
+              onClick={toggleMenu}
+            >
+              <IoIosMenu />
+            </button>
+          </div>
+          <ul className={ulClassName} ref={ulRef}>
             <li>Hello, {user.username}</li>
             <li>email: {user.email}</li>
             <li><hr /></li>
@@ -77,28 +77,28 @@ function ProfileButton({ user }) {
             <li>
               <button className="secondary" onClick={logout}>Log Out</button>
             </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <OpenModalButton
-                buttonText="Log In"
-                className="primary"
-                onButtonClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-            <li>
-              <OpenModalButton
-                buttonText="Sign Up"
-                className="secondary"
-                onButtonClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </li>
-          </>
-        )}
-      </ul>
+          </ul>
+        </>
+      ) : (
+        <ul className='login-signup'>
+          <li>
+            <OpenModalButton
+              buttonText="Log In"
+              className="secondary"
+              onButtonClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+          </li>
+          <li>
+            <OpenModalButton
+              buttonText="Sign Up"
+              className="primary"
+              onButtonClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+          </li>
+        </ul>
+      )}
     </>
   );
 }

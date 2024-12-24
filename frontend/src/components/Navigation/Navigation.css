@@ -2,7 +2,6 @@ nav {
   height: 80px;
 
   margin: 0 auto;
-  /* padding: 0 40px; */
 
   display: flex;
   justify-content: space-between;
@@ -16,8 +15,26 @@ nav {
   font-weight: 500;
   display: flex;
 }
+.login-signup {
+  width: 200px;
+  margin: 0 0;
+  padding: 0 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
+}
+.login-signup > li > button {
+  width: 80px;
+}
+.profile-dropdown {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  min-height: 100px;
+  min-width: 170px;
+  max-width: 230px;
 
-nav .profile-dropdown {
   box-sizing: border-box;
   border: 1px solid rgba(128, 128, 128, 0.3);
   background-color: white;
@@ -32,16 +49,18 @@ nav .profile-dropdown {
   flex-direction: column;
 }
 
-nav ul.profile-dropdown {
-  padding: 10px;
-  margin: 10px;
-  width: 100%;
-  min-height: 100px;
-  min-width: 170px;
-  max-width: 230px;
+.profile-dropdown > li:nth-child(4),
+li:nth-child(5) {
+  transition: all 0.3s;
+  padding: 10px 0;
 }
 
-nav .profile-dropdown button {
+.profile-dropdown > li:nth-child(4):active,
+li:nth-child(5):active {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+.profile-dropdown button {
   width: 100%;
   margin: 3px 0;
 }
