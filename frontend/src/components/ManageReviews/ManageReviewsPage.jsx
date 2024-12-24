@@ -24,7 +24,7 @@ export default function ManageReviewsPage() {
     }, [Reviews])
 
     return (
-        <main className="manage-reviews-container">
+        <main id="spots-container">
             {!isLoaded
                 ? <h2>Loading ...</h2>
                 : <>
@@ -35,7 +35,10 @@ export default function ManageReviewsPage() {
                             key={reviewId}>
 
                             <NavLink to={`/${spotId}`}>
-                                <img src={Spot.previewImage} alt="" />
+                                <img 
+                                className="for-review"
+                                src={Spot.previewImage}
+                                alt="" />
                             </NavLink>
                             <div>
                                 <h3>{Spot.name}</h3>
@@ -45,7 +48,7 @@ export default function ManageReviewsPage() {
                                     date={updatedAt}
                                     stars={stars}
                                 />
-                                <div className="review-actions-container">
+                                <div className="manage-spot-actions">
                                     <OpenModalButton
                                         key={spotId + reviewId + 1}
                                         className="secondary"
