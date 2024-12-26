@@ -2,7 +2,6 @@ import { csrfFetch } from "./csrf"
 
 const LOAD_REVEIWS = "reviews/load"
 
-
 export const getReviews = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     const data = await res.json();

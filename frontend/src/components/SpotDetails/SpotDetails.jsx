@@ -95,10 +95,7 @@ export default function SpotDetails() {
                     </div>
                     <div className='images'>
                         {images.map(({ id, url }) => {
-                            return <img
-                                key={id}
-                                src={url}
-                                alt="image of a spot" />
+                            return <img key={id} src={url} alt="image of a spot" />
                         })}
                     </div>
                 </div>
@@ -138,18 +135,18 @@ export default function SpotDetails() {
                 {(numReviews === 0 && !isOwner) && <div style={{ margin: "20px 0" }}>Be the first to leave a review</div>}
                 <div className='reviews-container'>
                     {reviews.map(({ id: reviewId, User, review, updatedAt, stars }) => {
-                        return <>
+                        return <div key={reviewId}>
                             <ReviewTile
-                                key={reviewId}
                                 name={User.firstName}
                                 date={updatedAt}
                                 stars={stars}
                                 review={review}
                             />
                             {userId && User.id === userId &&
-                                <div style={{ marginBottom: "10px" }} className="review-actions-container">
+                                <div
+                                    style={{ marginBottom: "10px" }} className="review-actions-container">
+
                                     <OpenModalButton
-                                        key={reviewId + userId + spotId}
                                         className="secondary"
                                         buttonText="Update"
                                         modalComponent={<ReviewModalForm
@@ -159,8 +156,8 @@ export default function SpotDetails() {
                                             reviewMessage={review}
                                             starsInit={stars} />
                                         } />
+
                                     <OpenModalButton
-                                        key={spotId + userId + reviewId + userId}
                                         className="critical"
                                         buttonText="Delete"
                                         modalComponent={<DeleteConfirmatinModal
@@ -175,7 +172,7 @@ export default function SpotDetails() {
                                     />
                                 </div>
                             }
-                        </>
+                        </div>
                     })}
                 </div>
             </div>

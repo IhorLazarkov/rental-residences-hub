@@ -11,7 +11,7 @@ export default function ManageSpostPage() {
 
     const dispatch = useDispatch()
     const [toRedirect, setRedirect] = useState('')
-    const { Spots } = useSelector(state => state.spots)
+    const spots = useSelector(state => state.spots)
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -29,8 +29,8 @@ export default function ManageSpostPage() {
             {!isLoaded
                 ? <h3>Loading ...</h3>
                 : <>
-                    {Spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
-                    {Spots.map(spot => {
+                    {spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+                    {Object.values(spots).map(spot => {
 
                         const preview = spot.SpotImages.find(i => i.preview)
 

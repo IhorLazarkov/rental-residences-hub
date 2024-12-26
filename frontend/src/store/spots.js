@@ -4,6 +4,7 @@ const NEW_SPOT = "spots/new"
 const LOAD_SPOTS = 'spots/load';
 const LOAD_SPOT_DETAILS = 'spotDetails/load';
 
+//General work with spots
 export const createSpot = (spot) => async (dispatch) => {
     //Save new spot
     const resSpot = await csrfFetch('/api/spots', {
@@ -51,10 +52,19 @@ export const deleteSpot = (id) => async (dispatch) => {
     return resDelete;
 }
 
+const normalize = (Spots) => {
+    const spots = {}
+    for (let i = 0; i < Spots.length; i++) {
+        const spot = { ...Spots[i] }
+        spots[spot.id] = spot
+    }
+    return spots;
+}
+
 export const getSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
-    const data = await res.json();
-    dispatch(loadSpots(data))
+    const { Spots } = await res.json();
+    dispatch(loadSpots(normalize(Spots)))
     return res;
 }
 
@@ -74,7 +84,7 @@ export const getSpotDetails = (spotId) => async (dispatch) => {
 export const loadCurrentSpots = () => async (dispatch) => {
     const res = await csrfFetch('/api/spots/current')
     const data = await res.json()
-    dispatch(loadSpots(data))
+    dispatch(loadSpots(normalize(data.Spots)))
     return res;
 }
 
@@ -97,15 +107,49 @@ function loadSpotDetails(spot) {
     }
 }
 
+//Filtering
+export const filterSpots = (filter) => async (dispatch) => {
+    const res = await csrfFetch('/api/spots')
+    const { Spots } = await res.json()
+
+    if (Object.values(filter).length === 0) return dispatch(loadSpots(normalize(Spots)))
+
+    //apply filter
+    console.log({ filter });
+    const filteredSpots = Spots.filter(spot => {
+        let isMatch = true;
+        Object.entries(filter).map(([key, value]) => {
+            //change match index only when prev was successful match
+            //otherwise this element is not match
+            if (isMatch) {
+                if (key.toLocaleLowerCase().includes("minprice")) {
+                    isMatch = spot.price >= value;
+                }
+                else if (key.toLocaleLowerCase().includes('maxprice')) {
+                    isMatch = spot.price <= value;
+                }
+                else isMatch = spot[key] === value;
+            }
+            console.log({ isMatch, key, value, spot_value: spot.price });
+        });
+        return isMatch;
+    });
+
+    dispatch(loadSpots(normalize(filteredSpots)));
+    return res;
+}
+
 export default function spotsReducer(status = {}, action) {
     switch (action.type) {
 
         case NEW_SPOT:
             return { ...status, newSpot: action.newSpot };
         case LOAD_SPOTS:
-            return { ...status, ...action.spots };
+            status = { ...action.spots }
+            return { ...status };
         case LOAD_SPOT_DETAILS:
-            return { ...status, ...action.spot };
+            status = { ...action.spot }
+            return { ...status };
 
         default:
             return status;

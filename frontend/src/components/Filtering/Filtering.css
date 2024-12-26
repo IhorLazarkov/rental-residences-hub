@@ -1,0 +1,16 @@
+#filtering {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+#filtering > select,
+#filtering > input {
+  box-sizing: border-box;
+  height: 38px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  font-size: 1em;
+  padding-left: 3px;
+  color: rgb(158, 156, 156);
+}
