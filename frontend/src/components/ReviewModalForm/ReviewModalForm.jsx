@@ -14,7 +14,7 @@ export default function ReviewModalForm({ action, spotId, spotName, reviewId, re
     const [stars, setStars] = useState(starsInit)
     const [error, setError] = useState('')
     const { closeModal } = useModal()
-    const [isUpdate, setUpdate] = useState(false)
+    const [isUpdate, setUpdate] = useState(action === "updateCurrent")
 
     useEffect(() => {
         if (review.length >= 10 && stars !== 0) setDisabled(false)
@@ -71,7 +71,7 @@ export default function ReviewModalForm({ action, spotId, spotName, reviewId, re
         <form
             className='review-dialog-container'
             onSubmit={onSubmit}>
-            <h2>How was Your stay {isUpdate && `at ${spotName}`}?</h2>
+            <h2>How was your stay {isUpdate && `at ${spotName}`}?</h2>
             {error !== '' && <span style={{ marginBottom: "10px" }} className='error'>{error}</span>}
             <textarea
                 value={review}
