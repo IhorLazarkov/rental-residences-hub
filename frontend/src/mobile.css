@@ -98,4 +98,8 @@
   .manage-spot-actions {
     justify-content: space-between;
   }
+  .review-actions-container {
+    display: flex;
+    justify-content: space-between;
+  }
 }

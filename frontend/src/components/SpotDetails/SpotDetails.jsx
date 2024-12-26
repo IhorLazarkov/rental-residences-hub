@@ -41,7 +41,7 @@ export default function SpotDetails() {
     }, [dispatch, spotId])
 
     useEffect(() => {
-        if (Object.entries(spot).length > 0) {
+        if (Object.entries(spot).length > 0 && spot.Owner) {
             setFirstName(spot.Owner.firstName)
             setLastName(spot.Owner.lastName)
             setName(spot.name)
@@ -144,7 +144,8 @@ export default function SpotDetails() {
                             />
                             {userId && User.id === userId &&
                                 <div
-                                    style={{ marginBottom: "10px" }} className="review-actions-container">
+                                    style={{ marginBottom: "10px" }}
+                                    className="review-actions-container">
 
                                     <OpenModalButton
                                         className="secondary"

@@ -115,7 +115,6 @@ export const filterSpots = (filter) => async (dispatch) => {
     if (Object.values(filter).length === 0) return dispatch(loadSpots(normalize(Spots)))
 
     //apply filter
-    console.log({ filter });
     const filteredSpots = Spots.filter(spot => {
         let isMatch = true;
         Object.entries(filter).map(([key, value]) => {
@@ -130,7 +129,6 @@ export const filterSpots = (filter) => async (dispatch) => {
                 }
                 else isMatch = spot[key] === value;
             }
-            console.log({ isMatch, key, value, spot_value: spot.price });
         });
         return isMatch;
     });

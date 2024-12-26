@@ -71,7 +71,8 @@ function loadReviews(reviews) {
 export default function reviewReducer(status = {}, action) {
     switch (action.type) {
         case LOAD_REVEIWS:
-            return { ...status, ...action.reviews }
+            status = { ...action.reviews }
+            return { ...status }
         default:
             return status;
     }
