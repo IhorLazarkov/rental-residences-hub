@@ -51,22 +51,20 @@ export default function Filtering() {
     }
 
     return (
-        <main>
+        <nav>
             {!isLoaded
                 ? <h3>Loading...</h3>
                 : <div id="filtering">
-                    <label htmlFor="country">Country</label>
                     <select id="country" onChange={selectCountry}>
-                        <option value="" defaultValue="">empty</option>
+                        <option value="" defaultValue="">select country</option>
                         {countries && countries.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
-                    <label htmlFor="city">City</label>
                     <select id="city" onChange={selectCity}>
-                        <option value="" defaultValue="">empty</option>
+                        <option value="" defaultValue="">select city</option>
                         {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                     <section style={{ display: "flex", gap: "10px" }}>
-                        <label htmlFor="from">Price range</label>
+                        <label htmlFor="from">$</label>
                         <input type="number" name="from" id="from" min="0" max="99000" value={minPrice} onChange={e => setMinPrice(e.target.value)} />
                         -
                         <input type="number" name="to" id="to" min="0" max="99000" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
@@ -74,6 +72,6 @@ export default function Filtering() {
                     <button onClick={onReset} className="secondary" title="clear filter"><GiCancel/></button>
                 </div>
             }
-        </main>
+        </nav>
     );
 }

@@ -2,6 +2,9 @@
   nav {
     width: 90%;
   }
+  #filtering{
+    width: 90%;
+  }
   #logo {
     font-size: 1.1em;
     display: flex;

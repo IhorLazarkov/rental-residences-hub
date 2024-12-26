@@ -20,7 +20,7 @@ export default function LandingPage() {
     return (
         <>
             <Filtering />
-            <hr />
+            {/* <hr /> */}
             <main id="spots-container">
                 {isLoading
                     ? <h1>Loading ...</h1>
