@@ -6,7 +6,11 @@ form.review-dialog-container{
 }
 
 form.review-dialog-container > textarea {
-    flex-grow: 3;
+    min-width: 75%;
+    max-width: 75%;
+    min-height: 110px;
+    max-height: 130px;
+    overflow-y: auto;
 }
 
 form.review-dialog-container > div.stars-container {
