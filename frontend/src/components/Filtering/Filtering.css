@@ -2,10 +2,12 @@
   margin: 15px 0;
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 #filtering > select,
-#filtering > input {
+#filtering > input,
+#filtering > section > input {
   box-sizing: border-box;
   height: 38px;
   border-radius: 5px;
@@ -13,4 +15,15 @@
   font-size: 1em;
   padding-left: 3px;
   color: rgb(158, 156, 156);
+}
+
+#filtering > section {
+  align-items: center;
+}
+
+#filtering > button {
+  color: rgb(158, 156, 156);
+  border: 0;
+  margin: 0 0;
+  padding: 0 0;
 }

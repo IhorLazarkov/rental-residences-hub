@@ -3,6 +3,7 @@ import "./Filtering.css"
 import { useEffect, useState } from "react";
 import { getFilters } from "../../store/filter";
 import { filterSpots } from "../../store/spots";
+import { GiCancel } from "react-icons/gi";
 
 export default function Filtering() {
     const dispatch = useDispatch()
@@ -66,11 +67,11 @@ export default function Filtering() {
                     </select>
                     <section style={{ display: "flex", gap: "10px" }}>
                         <label htmlFor="from">Price range</label>
-                        <input type="number" name="from" id="from" minLength={0} value={minPrice} onChange={e => setMinPrice(e.target.value)} />
+                        <input type="number" name="from" id="from" min="0" max="99000" value={minPrice} onChange={e => setMinPrice(e.target.value)} />
                         -
-                        <input type="number" name="to" id="to" minLength={0} value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
+                        <input type="number" name="to" id="to" min="0" max="99000" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
                     </section>
-                    <button onClick={onReset} className="secondary">reset</button>
+                    <button onClick={onReset} className="secondary" title="clear filter"><GiCancel/></button>
                 </div>
             }
         </main>
