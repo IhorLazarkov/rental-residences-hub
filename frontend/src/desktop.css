@@ -19,7 +19,8 @@
     display: none;
   }
   #modal-content {
-    max-width: 80%;
+    min-width: 45%;
+    max-width: 50%;
     max-height: 80%;
   }
   img.spot-card-for-review {

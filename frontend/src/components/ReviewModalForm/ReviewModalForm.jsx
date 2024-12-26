@@ -71,7 +71,7 @@ export default function ReviewModalForm({ action, spotId, spotName, reviewId, re
         <form
             className='review-dialog-container'
             onSubmit={onSubmit}>
-            <h2>How was your stay {isUpdate && `at ${spotName}`}?</h2>
+            <h3>How was your stay {isUpdate && `at ${spotName}`}?</h3>
             {error !== '' && <span style={{ marginBottom: "10px" }} className='error'>{error}</span>}
             <textarea
                 value={review}
