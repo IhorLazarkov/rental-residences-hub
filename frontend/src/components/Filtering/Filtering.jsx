@@ -62,14 +62,14 @@ export default function Filtering() {
 
     const countriesDropdown = () => {
         return <select id="country" onChange={selectCountry} value={country}>
-            <option value="" defaultValue="">select country</option>
+            <option value="" defaultValue="">all countries</option>
             {countries && countries.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
     }
 
     const citiesDropdown = () => {
         return <select id="city" onChange={selectCity}>
-            <option value="" defaultValue="">select city</option>
+            <option value="" defaultValue="">all cities</option>
             {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
     }
