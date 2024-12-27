@@ -4,8 +4,10 @@ import sessionReducer from './session';
 import spotsReducer from './spots';
 import reviewReducer from './review';
 import filterReducer from './filter';
+import geolocationreducer from './geolocation';
 
 const rootReducer = combineReducers({
+  geolocation: geolocationreducer,
   session: sessionReducer,
   spots: spotsReducer,
   reviews: reviewReducer,

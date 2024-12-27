@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { getFilters } from "../../store/filter";
 import { filterSpots } from "../../store/spots";
 import { GiCancel } from "react-icons/gi";
+import { getGeoLocation } from "../../store/geolocation";
 
 export default function Filtering() {
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filters)
+    const geolocation = useSelector(state => state.geolocation)
     const [isLoaded, setLoaded] = useState(false)
     const [countries, setCountries] = useState([])
     const [cities, setCities] = useState([])
@@ -25,7 +27,15 @@ export default function Filtering() {
         dispatch(getFilters()).then(() => {
             setLoaded(true)
         })
+        dispatch(getGeoLocation());
     }, [dispatch])
+
+    useEffect(() => {
+        if (geolocation && geolocation.country) {
+            const { short_name } = geolocation.country
+            setCountry(short_name)
+        }
+    }, [Object.values(geolocation).length])
 
     useEffect(() => {
         filters.cities && setCities(filters.cities)
@@ -50,26 +60,34 @@ export default function Filtering() {
         dispatch(filterSpots({})).then(() => setLoaded(true))
     }
 
+    const countriesDropdown = () => {
+        return <select id="country" onChange={selectCountry} value={country}>
+            <option value="" defaultValue="">select country</option>
+            {countries && countries.map(c => <option key={c} value={c}>{c}</option>)}
+        </select>
+    }
+
+    const citiesDropdown = () => {
+        return <select id="city" onChange={selectCity}>
+            <option value="" defaultValue="">select city</option>
+            {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
+        </select>
+    }
+
     return (
         <nav>
             {!isLoaded
                 ? <h3>Loading...</h3>
                 : <div id="filtering">
-                    <select id="country" onChange={selectCountry}>
-                        <option value="" defaultValue="">select country</option>
-                        {countries && countries.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                    <select id="city" onChange={selectCity}>
-                        <option value="" defaultValue="">select city</option>
-                        {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
+                    {countriesDropdown()}
+                    {citiesDropdown()}
                     <section style={{ display: "flex", gap: "10px" }}>
                         <label htmlFor="from">$</label>
                         <input type="number" name="from" id="from" min="0" max="99000" value={minPrice} onChange={e => setMinPrice(e.target.value)} />
                         -
                         <input type="number" name="to" id="to" min="0" max="99000" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
                     </section>
-                    <button onClick={onReset} className="secondary" title="clear filter"><GiCancel/></button>
+                    <button onClick={onReset} className="secondary" title="clear filter"><GiCancel /></button>
                 </div>
             }
         </nav>

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import "./LandingPage.css"
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +6,10 @@ import SpotCard from "../SpotCard/SpotCard";
 import Filtering from "../Filtering/Filtering";
 
 export default function LandingPage() {
+
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
     const spots = useSelector(state => state.spots)
-    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getSpots()).then(() => {
@@ -19,8 +19,7 @@ export default function LandingPage() {
 
     return (
         <>
-            <Filtering />
-            {/* <hr /> */}
+            <Filtering/>
             <main id="spots-container">
                 {isLoading
                     ? <h1>Loading ...</h1>
