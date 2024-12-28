@@ -18,11 +18,7 @@
   #nav-button-container-mobile {
     display: none;
   }
-  #modal-content {
-    min-width: 45%;
-    max-width: 50%;
-    max-height: 80%;
-  }
+
   img.spot-card-for-review {
     max-width: 100%;
     border-radius: 10px;
@@ -106,6 +102,12 @@
   .spot-card {
     flex: 0 1 30%;
   }
+      
+  #modal-content {
+    min-width: 40%;
+    max-width: 70%;
+    max-height: 80%;
+  }
 }
 
 @media screen and (1580px >= width > 701px) {
@@ -119,4 +121,5 @@
     max-width: 350px;
     border-radius: 10px;
   }
+
 }

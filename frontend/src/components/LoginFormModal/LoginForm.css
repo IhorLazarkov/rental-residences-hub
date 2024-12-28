@@ -1,17 +1,17 @@
-form#login-form{
+form#login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px
+  gap: 5px;
 }
 #login-form > h2 {
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 }
 #login-form > section {
-  width: 80%;
+  width: 70%;
   display: flex;
   flex-direction: column;
-  gap: 10px
+  gap: 10px;
 }
 
 #login-form > section > div {
@@ -23,4 +23,5 @@ form#login-form{
 }
 #login-form > a {
   font-weight: 500;
+  padding: 20px;
 }
