@@ -1,38 +1,37 @@
 button {
-    cursor: pointer;
-  }
-  button.primary {
-    background: rgb(0, 92, 230);
-    color: white;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
-    height: 40px;
-    font-size: medium;
-  }
-  button.secondary {
-    color: rgb(0, 92, 230);
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid rgb(0, 92, 230);
-    height: 40px;
-    font-size: medium;
-  }
-  button.critical {
-    color: rgb(246, 69, 69);
-    background-color: white;
-    border: 1px solid rgb(246, 69, 69);
-    border-radius: 5px;
-    height: 40px;
-    font-size: medium;
-  }
-  
-  button.disabled {
-    color: rgb(231, 223, 223);
-    background-color: rgb(152, 151, 151);
-    border: 1px solid rgb(231, 223, 223);
-    border-radius: 5px;
-    height: 40px;
-    font-size: medium;
-    cursor: not-allowed;
-  }
-  
+  cursor: pointer;
+}
+button.primary {
+  background: rgb(0, 92, 230);
+  color: white;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  height: 40px;
+  font-size: medium;
+}
+button.secondary {
+  color: rgb(0, 92, 230);
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(0, 92, 230);
+  height: 40px;
+  font-size: medium;
+}
+button.critical {
+  color: rgb(246, 69, 69);
+  background-color: white;
+  border: 1px solid rgb(246, 69, 69);
+  border-radius: 5px;
+  height: 40px;
+  font-size: medium;
+}
+
+button.disabled {
+  color: rgb(231, 223, 223);
+  background-color: rgb(152, 151, 151);
+  border: 1px solid rgb(231, 223, 223);
+  border-radius: 5px;
+  height: 40px;
+  font-size: medium;
+  cursor: not-allowed;
+}

@@ -3,10 +3,10 @@ import "./Filtering.css"
 import { useEffect, useState } from "react";
 import { getFilters } from "../../store/filter";
 import { filterSpots } from "../../store/spots";
-import { GiCancel } from "react-icons/gi";
 import { getGeoLocation } from "../../store/geolocation";
 
-export default function Filtering() {
+export default function Filtering({ visible }) {
+
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filters)
     const geolocation = useSelector(state => state.geolocation)
@@ -71,9 +71,11 @@ export default function Filtering() {
             {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
     }
+    
+    if (!visible) return null;
 
     return (
-        <nav>
+        <>
             {!isLoaded
                 ? <h3>Loading...</h3>
                 : <div id="filtering">
@@ -85,9 +87,17 @@ export default function Filtering() {
                         -
                         <input type="number" name="to" id="to" min="0" max="99000" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} />
                     </section>
-                    <button onClick={onReset} className="secondary" title="clear filter"><GiCancel /></button>
+                    <button
+                        className="secondary"
+                        onClick={onReset}
+                        title="clear filter"
+                        style={{
+                            textDecoration: "underline",
+                            color: "rgb(0, 92, 230)"
+                        }}
+                    >clear all</button>
                 </div>
             }
-        </nav>
+        </>
     );
 }

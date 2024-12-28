@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
 import Filtering from "../Filtering/Filtering";
+import { IoFilter } from "react-icons/io5";
 
 export default function LandingPage() {
 
     const dispatch = useDispatch()
-    const [isLoading, setIsLoading] = useState(true)
     const spots = useSelector(state => state.spots)
+    const [isLoading, setIsLoading] = useState(true)
+    const [isFilterVisisble, setFilterVisibility] = useState(false)
 
     useEffect(() => {
         dispatch(getSpots()).then(() => {
@@ -19,7 +21,16 @@ export default function LandingPage() {
 
     return (
         <>
-            <Filtering />
+            <div id="filter-tab">
+                <Filtering visible={isFilterVisisble} />
+                <IoFilter
+                    id="filter-hide-open"
+                    onClick={() => setFilterVisibility(prev => !prev)}
+                    style={{
+                        transform: isFilterVisisble ? "rotate(180deg)" : ""
+                    }}
+                />
+            </div>
             <main id="spots-container">
                 {isLoading
                     ? <h1>Loading ...</h1>

@@ -1,8 +1,7 @@
 #filtering {
-  margin: 15px 0;
+  margin: 30px 0px 0px 0px;
   display: flex;
   gap: 10px;
-  align-items: center;
 }
 
 #filtering > select,
@@ -22,8 +21,33 @@
 }
 
 #filtering > button {
-  color: rgb(158, 156, 156);
   border: 0;
-  margin: 0 0;
-  padding: 0 0;
+  margin: 0;
+  padding: 0;
+}
+
+#filter-tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#filter-hide-open {
+  position: absolute;
+  font-size: 25px;
+  cursor: pointer;
+  top: -35px;
+  border-radius: 50%;
+  border: 0px solid rgb(128, 128, 128);
+  filter: drop-shadow( 1px 1px 4px #808080cc);
+
+  background: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  will-change: transform;
+  transition: transform 0.6s ease;
+}
+#filter-hide-open:active {
+  transform: rotate(180deg);
 }
