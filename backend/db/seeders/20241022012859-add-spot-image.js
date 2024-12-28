@@ -86,6 +86,7 @@ module.exports = {
         await SpotImage.create({ preview: true, url, spotId });
         //create other images
         urls.forEach(async url => {
+          console.log({ spotId, preview: false, url });
           await SpotImage.create({ spotId, preview: false, url });
         })
       }
