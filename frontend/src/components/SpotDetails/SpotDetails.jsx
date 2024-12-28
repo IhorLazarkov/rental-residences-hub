@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
 import { getReviews } from '../../store/review';
 import DeleteConfirmatinModal from '../DeleteConfirmationModal/DeleteConfirmatinModal';
+import MapContainer from '../MapPage/MapContainer';
 
 export default function SpotDetails() {
     const { spotId } = useParams()
@@ -28,6 +29,8 @@ export default function SpotDetails() {
     const [previewImage, setPreviewImage] = useState({})
     const [images, setImages] = useState([{}])
     const [price, setPrice] = useState()
+    const [lat, setLat] = useState()
+    const [lng, setLng] = useState()
     const [avgStarRating, setRating] = useState(0)
     const [numReviews, setNumReviews] = useState(0)
 
@@ -52,6 +55,8 @@ export default function SpotDetails() {
             setPrice(spot.price)
             setRating(spot.avgStarRating)
             setNumReviews(spot.numReviews)
+            setLat(spot.lat)
+            setLng(spot.lng)
 
             setReviews(spot.Reviews)
             const spotImages = spot.SpotImages.filter(i => !i.preview)
@@ -117,6 +122,12 @@ export default function SpotDetails() {
                         >Reserve</button>
                     </div>
                 </div>
+            </div>
+            <div className="spot-details-map">
+                <MapContainer
+                    lat={lat}
+                    lng={lng}
+                />
             </div>
             <div className='spot-details-foot'>
                 <div className='reviews-summary'>

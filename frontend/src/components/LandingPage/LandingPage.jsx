@@ -19,7 +19,7 @@ export default function LandingPage() {
 
     return (
         <>
-            <Filtering/>
+            <Filtering />
             <main id="spots-container">
                 {isLoading
                     ? <h1>Loading ...</h1>

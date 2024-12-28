@@ -27,15 +27,13 @@ export default function Filtering() {
         dispatch(getFilters()).then(() => {
             setLoaded(true)
         })
-        dispatch(getGeoLocation());
-    }, [dispatch])
-
-    useEffect(() => {
-        if (geolocation && geolocation.country) {
+        if (!geolocation.country)
+            dispatch(getGeoLocation());
+        else {
             const { short_name } = geolocation.country
             setCountry(short_name)
         }
-    }, [Object.values(geolocation).length])
+    }, [dispatch, geolocation])
 
     useEffect(() => {
         filters.cities && setCities(filters.cities)

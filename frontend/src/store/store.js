@@ -5,13 +5,15 @@ import spotsReducer from './spots';
 import reviewReducer from './review';
 import filterReducer from './filter';
 import geolocationreducer from './geolocation';
+import mapReducer from './map';
 
 const rootReducer = combineReducers({
   geolocation: geolocationreducer,
   session: sessionReducer,
   spots: spotsReducer,
   reviews: reviewReducer,
-  filters: filterReducer
+  filters: filterReducer,
+  map: mapReducer
 });
 
 let enhancer;
