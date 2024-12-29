@@ -9,9 +9,7 @@ export default function MapContainer({lng, lat}) {
 
     useEffect(() => {
         if (!apiKey) {
-            dispatch(getKey()).then(() => {
-                console.log({ apiKey });
-            })
+            dispatch(getKey())
         }
     }, [dispatch, apiKey]);
 
