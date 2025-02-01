@@ -29,7 +29,7 @@ export const getGeoLocation = () => async (dispatch) => {
             resolve({ lat, lng, country});
         }, (error) => {
             reject(error)
-        }, { timeout: 60000 })
+        }, { timeout: 5000 })
     });
     return res;
 }

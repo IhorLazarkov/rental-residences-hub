@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Filtering.css"
 import { useEffect, useState } from "react";
-import { getFilters } from "../../store/filter";
 import { filterSpots } from "../../store/spots";
 import { getGeoLocation } from "../../store/geolocation";
 
-export default function Filtering({ visible }) {
+export default function Filtering({ visible}) {
 
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filters)
@@ -24,11 +23,8 @@ export default function Filtering({ visible }) {
     const selectCity = (e) => setCity(e.target.value)
 
     useEffect(() => {
-        dispatch(getFilters()).then(() => {
-            setLoaded(true)
-        })
         if (!geolocation.country)
-            dispatch(getGeoLocation());
+            dispatch(getGeoLocation()).catch(err => console.error({ err }));
         else {
             const { short_name } = geolocation.country
             setCountry(short_name)
@@ -36,18 +32,21 @@ export default function Filtering({ visible }) {
     }, [dispatch, geolocation])
 
     useEffect(() => {
-        filters.cities && setCities(filters.cities)
-        filters.countries && setCountries(filters.countries)
-    }, [Object.values(filters).length])
+        if (Object.entries(filters).length > 0) {
+            filters.cities && setCities(filters.cities)
+            filters.countries && setCountries(filters.countries)
+        }
+    }, [filters])
 
     useEffect(() => {
+        console.log("apply filter");
         const filter = {}
         if (city) filter.city = city;
         if (country) filter.country = country;
         if (minPrice) filter.minPrice = parseInt(minPrice);
         if (maxPrice) filter.maxPrice = parseInt(maxPrice);
         dispatch(filterSpots(filter)).then(() => setLoaded(true))
-    }, [city, country, minPrice, maxPrice])
+    }, [dispatch, city, country, minPrice, maxPrice])
 
     const onReset = () => {
         setLoaded(false)

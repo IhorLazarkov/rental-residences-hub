@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { getFilters } from "./filter";
 
 const NEW_SPOT = "spots/new"
 const LOAD_SPOTS = 'spots/load';
@@ -111,6 +112,8 @@ function loadSpotDetails(spot) {
 export const filterSpots = (filter) => async (dispatch) => {
     const res = await csrfFetch('/api/spots')
     const { Spots } = await res.json()
+
+    dispatch(getFilters(Spots));
 
     if (Object.values(filter).length === 0) return dispatch(loadSpots(normalize(Spots)))
 

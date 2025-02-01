@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf"
+// import { csrfFetch } from "./csrf"
 
 const LOAD_FILTERS = "filters/load"
 
@@ -8,14 +8,12 @@ const getSet = (inboundArray) => {
     return Array.from(resultSet);
 }
 
-export const getFilters = () => async (dispatch) => {
+export const getFilters = (spots) => async (dispatch) => {
     const filters = {}
-    const res = await csrfFetch('/api/spots')
-    const data = await res.json()
-    filters.cities = getSet(data.Spots.map(spot => spot.city))
-    filters.countries = getSet(data.Spots.map(spot => spot.country))
+    filters.cities = getSet(spots.map(spot => spot.city))
+    filters.countries = getSet(spots.map(spot => spot.country))
     dispatch(loadFilters(filters));
-    return res;
+    return filters;
 }
 
 const loadFilters = (filters) => {
