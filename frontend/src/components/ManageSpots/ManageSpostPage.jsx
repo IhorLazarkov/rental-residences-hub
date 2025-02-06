@@ -25,47 +25,50 @@ export default function ManageSpostPage() {
     if (toRedirect !== '') return <Navigate to={toRedirect} replace={true} />
 
     return (
-        <main id="spots-container">
-            {!isLoaded
-                ? <h3>Loading ...</h3>
-                : <>
-                    {spots.length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
-                    {Object.values(spots).map(spot => {
+        <main>
+            <h3>Manage Spots</h3>
+            <div id="spots-container">
+                {!isLoaded
+                    ? <h3>Loading ...</h3>
+                    : <>
+                        {Object.values(spots).length === 0 && <NavLink to="/spots/new">Create a New Spot</NavLink>}
+                        {Object.values(spots).map(spot => {
 
-                        const preview = spot.SpotImages.find(i => i.preview)
+                            const preview = spot.SpotImages.find(i => i.preview)
 
-                        return <div key={spot.id}>
+                            return <div key={spot.id}>
 
-                            <SpotCard
-                                key={spot.id}
-                                id={spot.id}
-                                name={spot.name}
-                                previewImage={preview.url}
-                                city={spot.city}
-                                state={spot.state}
-                                price={spot.price}
-                                avgRating={spot.avgRating}
-                            />
-
-                            <div className="manage-spot-actions">
-                                <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
-                                <OpenModalButton
-                                    className='critical'
-                                    buttonText="Delete"
-                                    modalComponent={<DeleteConfirmatinModal
-                                        action="deleteSpot"
-                                        spotId={spot.id}
-                                        title="Confirm Delete"
-                                        message="Are you sure you want to delete this spot?"
-                                        confirmMessage="Yes (Delete Spot)"
-                                        abortMessage="No (Keep Spot)"
-                                    />}
+                                <SpotCard
+                                    key={spot.id}
+                                    id={spot.id}
+                                    name={spot.name}
+                                    previewImage={preview.url}
+                                    city={spot.city}
+                                    state={spot.state}
+                                    price={spot.price}
+                                    avgRating={spot.avgRating}
                                 />
+
+                                <div className="manage-spot-actions">
+                                    <button onClick={() => onUpdate(spot.id)} className="secondary">Update</button>
+                                    <OpenModalButton
+                                        className='critical'
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteConfirmatinModal
+                                            action="deleteSpot"
+                                            spotId={spot.id}
+                                            title="Confirm Delete"
+                                            message="Are you sure you want to delete this spot?"
+                                            confirmMessage="Yes (Delete Spot)"
+                                            abortMessage="No (Keep Spot)"
+                                        />}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    })}
-                </>
-            }
+                        })}
+                    </>
+                }
+            </div>
         </main>
     );
 }

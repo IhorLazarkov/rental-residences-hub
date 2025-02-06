@@ -623,7 +623,7 @@ router.get('/', queryParametersValidation, async (req, res, next) => {
                 price: parseFloat(spot.price),
                 createdAt: spot.createdAt,
                 updatedAt: spot.updatedAt,
-                avgRating: avgRating,
+                avgRating: parseFloat(avgRating).toFixed(1),
                 previewImage: previewImage
             };
         });

@@ -151,7 +151,7 @@ export default function NewSpot() {
             <form
                 id="new-spot-form-container"
                 onSubmit={onSubmit}>
-                <h2>{spotId ? "Update Your" : "Create a new"} Spot</h2>
+                <h2>{spotId ? "Update your" : "Create a new"} Spot</h2>
                 <h3>Where&apos;s your place located?</h3>
                 <p>
                     Guests will only get your exact address once they booked a reservation.
@@ -204,7 +204,7 @@ export default function NewSpot() {
                 <hr />
                 <h3>Set a base price for your spot</h3>
                 <p>
-                    Competitive pricing can help your llisting stand out and rank higher
+                    Competitive pricing can help your listing stand out and rank higher
                     in each results.
                 </p>
                 <span style={{ display: "flex", alignItems: "center", width: "100%", gap: "5px" }}>
@@ -226,7 +226,7 @@ export default function NewSpot() {
                 <button
                     className={isEnabled ? "primary" : "disabled"}
                     type="submit"
-                >{spotId ? "Update" : "Create"} Spot</button>
+                >{spotId ? "Update your" : "Create"} Spot</button>
             </form>
         </>
     );

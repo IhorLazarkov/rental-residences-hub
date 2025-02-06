@@ -4,9 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function SpotCard({ id, previewImage, city, state, price, avgRating, name }) {
 
-    const rating = avgRating === 0
-        ? "New"
-        : avgRating % 2 > 0 ? avgRating : avgRating + '.0'
+    const rating = parseFloat(avgRating) === 0 ? "New" : avgRating
 
     return (
         <NavLink to={`/${id}`} className="spot-card">

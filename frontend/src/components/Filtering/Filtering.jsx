@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { filterSpots } from "../../store/spots";
 import { getGeoLocation } from "../../store/geolocation";
 
-export default function Filtering({ visible}) {
+export default function Filtering({ visible }) {
 
     const dispatch = useDispatch()
     const filters = useSelector(state => state.filters)
@@ -18,9 +18,6 @@ export default function Filtering({ visible}) {
     const [city, setCity] = useState('')
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(1000)
-
-    const selectCountry = (e) => setCountry(e.target.value)
-    const selectCity = (e) => setCity(e.target.value)
 
     useEffect(() => {
         if (!geolocation.country)
@@ -39,14 +36,13 @@ export default function Filtering({ visible}) {
     }, [filters])
 
     useEffect(() => {
-        console.log("apply filter");
         const filter = {}
         if (city) filter.city = city;
         if (country) filter.country = country;
         if (minPrice) filter.minPrice = parseInt(minPrice);
         if (maxPrice) filter.maxPrice = parseInt(maxPrice);
         dispatch(filterSpots(filter)).then(() => setLoaded(true))
-    }, [dispatch, city, country, minPrice, maxPrice])
+    }, [city, country, minPrice, maxPrice])
 
     const onReset = () => {
         setLoaded(false)
@@ -58,19 +54,19 @@ export default function Filtering({ visible}) {
     }
 
     const countriesDropdown = () => {
-        return <select id="country" onChange={selectCountry} value={country}>
+        return <select id="country" onChange={(e) => setCountry(e.target.value)} value={country}>
             <option value="" defaultValue="">all countries</option>
             {countries && countries.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
     }
 
     const citiesDropdown = () => {
-        return <select id="city" onChange={selectCity}>
+        return <select id="city" onChange={(e) => setCity(e.target.value)}>
             <option value="" defaultValue="">all cities</option>
             {cities && cities.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
     }
-    
+
     if (!visible) return null;
 
     return (

@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import "./LandingPage.css"
 import { useSelector } from "react-redux";
-// import { getSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
 import Filtering from "../Filtering/Filtering";
 import { IoFilter } from "react-icons/io5";
 
 export default function LandingPage() {
 
-    // const dispatch = useDispatch()
     const spots = useSelector(state => state.spots)
     const [isLoading, setIsLoading] = useState(true)
     const [isFilterVisisble, setFilterVisibility] = useState(false)
 
     useEffect(() => {
-        console.log("Landing Page");
-        // dispatch(getSpots()).then(() => {
-        //     setIsLoading(false)
-        // })
         if (Object.values(spots).length > 0)
             setIsLoading(false)
     }, [spots]);
@@ -39,7 +33,7 @@ export default function LandingPage() {
                     ? <h1>Loading ...</h1>
                     : <>
                         {Object.values(spots).length === 0 && <h3>No spots found</h3>}
-                        {Object.values(spots).map(spot => {
+                        {!spots.newSpot && Object.values(spots).map(spot => {
                             return <SpotCard
                                 key={spot.id}
                                 id={spot.id}

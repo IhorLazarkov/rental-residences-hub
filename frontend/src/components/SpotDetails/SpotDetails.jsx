@@ -40,7 +40,7 @@ export default function SpotDetails() {
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        dispatch(getReviews(spotId))
+        if(spotId) dispatch(getReviews(spotId))
     }, [dispatch, spotId])
 
     useEffect(() => {
