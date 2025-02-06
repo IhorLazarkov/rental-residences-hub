@@ -35,6 +35,7 @@ export default function ManageSpostPage() {
                         {Object.values(spots).map(spot => {
 
                             const preview = spot.SpotImages.find(i => i.preview)
+                            const rating = parseInt(spot.avgRating)
 
                             return <div key={spot.id}>
 
@@ -46,7 +47,7 @@ export default function ManageSpostPage() {
                                     city={spot.city}
                                     state={spot.state}
                                     price={spot.price}
-                                    avgRating={spot.avgRating}
+                                    avgRating={rating}
                                 />
 
                                 <div className="manage-spot-actions">
