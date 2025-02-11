@@ -7,13 +7,15 @@ const spotImagesRouter = require('./spotImage.js');
 const reviewRouter = require('./review.js');
 const reviewImagesRouter = require('./reviewimages.js');
 const mapsRouter = require('./maps.js');
+const { trackingRouter, tracking } = require('./tracking.js')
 const { restoreUser } = require("../../utils/auth.js");
 
 
 // Connect restoreUser middleware to the API router
-  // If current user session is valid, set req.user to the user in the database
-  // If current user session is not valid, set req.user to null
+// If current user session is valid, set req.user to the user in the database
+// If current user session is not valid, set req.user to null
 router.use(restoreUser);
+router.use(tracking);
 
 router.use('/session', sessionRouter);
 
@@ -28,6 +30,8 @@ router.use('/spot-images', spotImagesRouter);
 router.use('/review-images', reviewImagesRouter);
 
 router.use('/maps', mapsRouter);
+
+router.use('/tracking', trackingRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
