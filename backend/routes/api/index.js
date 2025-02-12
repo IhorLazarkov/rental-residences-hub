@@ -8,6 +8,7 @@ const reviewRouter = require('./review.js');
 const reviewImagesRouter = require('./reviewimages.js');
 const mapsRouter = require('./maps.js');
 const { trackingRouter, tracking } = require('./tracking.js')
+const feedback = require('./feedback.js')
 const { restoreUser } = require("../../utils/auth.js");
 
 
@@ -32,6 +33,8 @@ router.use('/review-images', reviewImagesRouter);
 router.use('/maps', mapsRouter);
 
 router.use('/tracking', trackingRouter);
+
+router.use('/feedback', feedback);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
