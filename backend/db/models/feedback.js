@@ -15,7 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   feedback.init({
     rating: DataTypes.INTEGER,
-    message: DataTypes.STRING
+    message: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [0, 30]
+      }
+    }
   }, {
     sequelize,
     modelName: 'Feedback',
