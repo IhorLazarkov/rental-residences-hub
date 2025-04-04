@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import fs from 'fs';
+// import fs from 'fs';
 import react from '@vitejs/plugin-react';
 import eslint from 'vite-plugin-eslint';
 
@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => ({
     proxy:{
       "/api": "http://localhost:8000"
     },
-    host: '99.98.183.163',
-    port: 3000,
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 3001,
     https: false,
     // https:{
     //   key: fs.readFileSync('./ssl/key.pem'),
