@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           buttonText="feedback"
           className="secondary"
           style={{
-            position: "absolute",
+            position: "fixed",
             top: "calc(100vh / 2)",
             left: "-30px",
             transform: "rotate(90deg)",

@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => ({
     proxy:{
       "/api": "http://localhost:8000"
     },
-    host: process.env.HOST || '0.0.0.0',
-    port: process.env.PORT || 3001,
+    host: process.env.HOST || 'localhost',
+    port: process.env.PORT || 3002,
     https: false,
     // https:{
     //   key: fs.readFileSync('./ssl/key.pem'),
