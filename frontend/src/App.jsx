@@ -8,7 +8,7 @@ import SpotDetails from "./components/SpotDetails/SpotDetails";
 import NewSpot from "./components/NewSpot/NewSpotForm";
 import ManageSpostPage from "./components/ManageSpots/ManageSpostPage";
 import ManageReviewsPage from "./components/ManageReviews";
-import Banner from "./components/Banner/Banner";
+// import Banner from "./components/Banner/Banner";
 
 
 function Layout() {
@@ -23,7 +23,7 @@ function Layout() {
 
   return (
     <>
-      <Banner/>
+      {/* <Banner/> */}
       <Navigation isLoaded={isLoaded} />
       <hr />
       {isLoaded && <Outlet />}
