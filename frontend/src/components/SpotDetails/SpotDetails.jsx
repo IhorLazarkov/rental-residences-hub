@@ -9,6 +9,7 @@ import ReviewModalForm from '../ReviewModalForm/ReviewModalForm';
 import { getReviews } from '../../store/review';
 import DeleteConfirmatinModal from '../DeleteConfirmationModal/DeleteConfirmatinModal';
 import MapContainer from '../MapPage/MapContainer';
+import ImgComp from './ImgComp';
 
 export default function SpotDetails() {
     const { spotId } = useParams()
@@ -40,7 +41,7 @@ export default function SpotDetails() {
     const [userId, setUserId] = useState(null)
 
     useEffect(() => {
-        if(spotId) dispatch(getReviews(spotId))
+        if (spotId) dispatch(getReviews(spotId))
     }, [dispatch, spotId])
 
     useEffect(() => {
@@ -94,13 +95,11 @@ export default function SpotDetails() {
             <div className='spot-details-body'>
                 <div className='photos-container'>
                     <div className="preview">
-                        <img
-                            src={previewImage?.url}
-                            alt="preview image" />
+                        <ImgComp url={previewImage?.url} />
                     </div>
                     <div className='images'>
-                        {images.map(({ id, url }) => {
-                            return <img key={id} src={url} alt="image of a spot" />
+                        {images.map(({ url }, i) => {
+                            return <ImgComp key={i} url={url} />
                         })}
                     </div>
                 </div>
