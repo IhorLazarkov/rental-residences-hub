@@ -34,7 +34,15 @@ export default function LandingPage() {
                     : <>
                         {Object.values(spots).length === 0 && <h3>No spots found</h3>}
                         {!spots.newSpot && Object.values(spots).map(spot => {
-                            return <SpotCard key={spot.id} spot={spot} />
+                            return <SpotCard key={spot.id}
+                                id={spot.id}
+                                name={spot.name}
+                                previewImage={spot.previewImage}
+                                city={spot.city}
+                                state={spot.state}
+                                price={spot.price}
+                                avgRating={spot.avgRating}
+                            />
                         })}
                     </>
                 }
