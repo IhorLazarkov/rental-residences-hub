@@ -3,7 +3,7 @@ import { IoIosStar } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import ImgComp from "../SpotDetails/ImgComp";
 
-export default function SpotCard({ id, previewImage, city, state, price, avgRating, name }) {
+export default function SpotCard({ id, previewImage, city, state, price, avgRating }) {
 
     const rating = parseFloat(avgRating) === 0 ? "New" : avgRating
 
