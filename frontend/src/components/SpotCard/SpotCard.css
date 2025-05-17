@@ -15,6 +15,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  & .img-container {
+    height: 90%;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
 }
 
 .spot-card:hover {
@@ -22,13 +33,6 @@
     color: rgb(0, 92, 230);
     border-color: rgb(0, 92, 230);
   }
-}
-
-.spot-card > img {
-  width: 100%;
-  height: 80%;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
 .spot-card-info {

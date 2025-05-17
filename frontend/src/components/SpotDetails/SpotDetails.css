@@ -13,9 +13,31 @@
 }
 
 /* Body */
+.photos-container {
+  height: 50%;
 
-img {
-  object-fit: cover;
+  & .preview {
+    width: 50%;
+    height: 100%;
+
+    & img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & .images {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25px, 48%));
+    grid-template-rows: repeat(auto-fill, minmax(25%, 50%));
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
 .property-description-container > .actions {
