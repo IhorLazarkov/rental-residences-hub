@@ -4,3 +4,4 @@ build
 .DS_Store
 *.db
 instruction-local-run.txt
+certs
