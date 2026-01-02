@@ -5,6 +5,10 @@
 This project is clone of well known AirBnb. As a full stack developer it's very good opportunity to present knowledge and skills to create interactive, responsive web application. A user will be able to 
 perform CRUD (create, read, update and delete) records that are stored in database.
 
+## Live demo
+
+[![Demo Video](docs/live-demo.mov?raw=true)](docs/live-demo.mov)
+
 ## Technologies stack
 
 * Frontend: Redux, React, React-route, CSS, Vite
