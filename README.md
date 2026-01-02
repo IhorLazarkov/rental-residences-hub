@@ -15,6 +15,10 @@ perform CRUD (create, read, update and delete) records that are stored in databa
 
 ### Backend
 
+DB Diagram
+
+![db diagram](./docs/DB_Diagram.png)
+
 To install the dependecies
 
 ```bash
