@@ -15,7 +15,7 @@ perform CRUD (create, read, update and delete) records that are stored in databa
 
 DB Diagram
 
-![db diagram](docs/DB_Diagram.png)
+![db diagram](docs/DB_diagram.png)
 
 ## How to start the application locally
 
