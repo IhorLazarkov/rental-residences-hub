@@ -1,8 +1,8 @@
-# Rental residens hub
+# Rental residence hub
 
 ## Intro
 
-This project is clone of well known AirBnb. As a full stack developer it's very good apportunity to present knowlesge and skills to create interractive, responsive web application. A user will be able to 
+This project is clone of well known AirBnb. As a full stack developer it's very good opportunity to present knowledge and skills to create interactive, responsive web application. A user will be able to 
 perform CRUD (create, read, update and delete) records that are stored in database.
 
 ## Technologies stack
@@ -11,15 +11,15 @@ perform CRUD (create, read, update and delete) records that are stored in databa
 * Backend: Express, Sequelize
 * Database: PostgreSQL
 
-## How to start the applicaton locally
-
-### Backend
+## State management
 
 DB Diagram
 
-![db diagram](./docs/DB_Diagram.png)
+![db diagram](docs/DB_Diagram.png)
 
-To install the dependecies
+## How to start the application locally
+
+To install the dependencies
 
 ```bash
 cd backend && npm install
